@@ -1,0 +1,108 @@
+/*
+  Snuggery's web pages — the Iris palette, matching the app.
+
+  Linked from every page with a RELATIVE path (`style.css` from the root page,
+  `../style.css` from the two subdirectories). Relative rather than absolute on
+  purpose: these pages have to work under whatever prefix a host gives them —
+  `/snuggery/` on a GitHub user site, `/snuggery-site/` on a project site, `/` on
+  a custom domain — and an absolute path breaks the moment that prefix changes.
+
+  Light and dark both defined; the app's dark mode is designed rather than
+  inverted, and the site follows it.
+*/
+:root {
+    color-scheme: light dark;
+    --canvas: #f5f5fa;
+    --surface: #ffffff;
+    --ink: #131320;
+    --ink-soft: #55556b;
+    --accent: #5b5bd6;
+    --hairline: #e6e6f0;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --canvas: #131320;
+        --surface: #1d1d2b;
+        --ink: #f2f2f7;
+        --ink-soft: #a3a3b8;
+        --accent: #818cf8;
+        --hairline: #2c2c3d;
+    }
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 2.5rem 1.25rem 4rem;
+    background: var(--canvas);
+    color: var(--ink);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+}
+
+main { max-width: 40rem; margin: 0 auto; }
+
+header { margin-bottom: 2.5rem; }
+
+h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+}
+
+.tagline { color: var(--ink-soft); margin: 0; }
+
+h2 {
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    margin: 2.5rem 0 0.75rem;
+}
+
+h3 {
+    font-size: 1rem;
+    margin: 1.75rem 0 0.4rem;
+}
+
+p, li { color: var(--ink); }
+p { margin: 0 0 1rem; }
+
+a { color: var(--accent); text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+.card {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.card > :first-child { margin-top: 0; }
+.card > :last-child { margin-bottom: 0; }
+
+ul { padding-left: 1.25rem; margin: 0 0 1rem; }
+li { margin-bottom: 0.35rem; }
+
+code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+    background: var(--canvas);
+    padding: 0.1em 0.35em;
+    border-radius: 5px;
+}
+
+.card code { background: var(--canvas); }
+
+footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hairline);
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+}
+
+footer a { color: var(--ink-soft); }
+
+.updated { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 2rem; }

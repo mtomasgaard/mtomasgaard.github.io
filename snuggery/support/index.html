@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snuggery — Support</title>
+<meta name="description" content="Help for Snuggery, the private offline home for the mini-apps and files you make with AI.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+
+<header>
+    <h1>Support</h1>
+    <p class="tagline">Snuggery for iOS</p>
+</header>
+
+<p>Snuggery is a private, offline home for the mini-apps and files you make with AI. Everything
+stays on your device — there is no account to lose access to and no server to be down.</p>
+
+<h2>Get in touch</h2>
+
+<div class="card">
+    <p>Email <a href="mailto:mtomasgaard+snuggery@gmail.com">mtomasgaard+snuggery@gmail.com</a>.</p>
+    <p>It helps enormously if you include:</p>
+    <ul>
+        <li>what you were doing when it went wrong,</li>
+        <li>what you expected to happen instead,</li>
+        <li>the diagnostics from <strong>Settings → Help &amp; Support → Copy Diagnostics</strong>.</li>
+    </ul>
+    <p>Those diagnostics are a few lines naming the app build, your iOS version, and your device
+    model. They contain no file names and nothing from your library.</p>
+</div>
+
+<h2>Common questions</h2>
+
+<h3>A mini-app I imported shows a blank screen</h3>
+<p>It is almost always trying to load something from the internet — a font, a chart library, an
+image on a server. Mini-apps in Snuggery run fully offline and cannot make network requests, by
+design. Ask your AI to rebuild it with everything included in the ZIP and no external links.</p>
+
+<h3>My ZIP was refused</h3>
+<p>Snuggery inspects an archive before extracting anything, and refuses structures that are unsafe
+or unreasonably large. The message tells you which check failed. Most often the fix is to re-export
+it as a plain ZIP with the app's files at the top level, rather than a folder inside a folder.</p>
+
+<h3>Can I edit the data my apps use?</h3>
+<p>Yes — that is the point. Open a mini-app, tap <strong>⋯</strong>, then <strong>App Files</strong>.
+Edit a <code>.csv</code> or <code>.json</code> file there and the app shows your change the next
+time it reads it. Try it with Run Tracker's <code>runs.csv</code>.</p>
+
+<h3>How do I get my work out?</h3>
+<p>Any item can be exported as a ZIP from its <strong>⋯</strong> menu, at any time, whether or not
+you have bought Snuggery. Nothing you make is ever locked inside the app.</p>
+
+<h3>I got a new phone</h3>
+<p>Purchases restore through <strong>Settings → Restore Purchases</strong>. Your library travels
+with an encrypted device backup or a direct device-to-device transfer.</p>
+
+<h3>Do I need a subscription?</h3>
+<p>No. Snuggery is one payment, once. You get the complete app free for seven days first, and when
+the trial ends, everything already in your library stays openable and exportable.</p>
+
+<h3>Does Snuggery build the apps for me?</h3>
+<p>No. Snuggery writes a prompt you paste into your own AI — Claude, ChatGPT, or any other — and
+imports and runs what comes back. The building happens in the AI you already use.</p>
+
+<h2>Privacy</h2>
+
+<p>Snuggery collects nothing: no accounts, no analytics, no servers.
+Full policy: <a href="../privacy/">Privacy Policy</a>.</p>
+
+<footer>
+    <a href="../">Snuggery</a> · <a href="../privacy/">Privacy</a>
+</footer>
+
+</main>
+</body>
+</html>
