@@ -1,0 +1,122 @@
+/*
+  Strikk's web pages — the warm palette, lifted from the app's own tokens.
+
+  Linked from every page with a RELATIVE path (`style.css` from the root page,
+  `../style.css` from the two subdirectories) — copied deliberately from
+  Snuggery's Site/style.css, and for the same reason: these pages have to
+  work under whatever prefix a host gives them (`/strikk/` on a GitHub user
+  site, `/` on a custom domain), and an absolute path would silently unstyle
+  them the moment that prefix changes.
+
+  Colors verified against the app's own asset catalog, not invented for this
+  page:
+    --canvas / --surface   Theme.background / Theme.surface
+                            (App/Strikk/Resources/Assets.xcassets/
+                            BackgroundWarm.colorset, SurfaceWarm.colorset)
+    --accent                Theme.brand — the terracotta interactive tint
+                            (AccentColor.colorset)
+    --ink-soft              Theme.neutral — the app's own warm substitute
+                            for system gray (NeutralWarm.colorset)
+  `--ink` and `--hairline` are NOT app tokens (the app leans on system label
+  colors over these backgrounds, which has no web equivalent) — chosen here
+  to sit comfortably on the verified canvas/surface pair, warm rather than
+  the cool black/gray a default stylesheet would reach for.
+
+  Light and dark both defined, matching the app's own light/dark colorsets.
+*/
+:root {
+    color-scheme: light dark;
+    --canvas: #faf6ef;
+    --surface: #fffdf8;
+    --ink: #2a2118;
+    --ink-soft: #6e6157;
+    --accent: #9c4f38;
+    --hairline: #ece4d8;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --canvas: #1c1917;
+        --surface: #292524;
+        --ink: #f5efe6;
+        --ink-soft: #a89f94;
+        --accent: #d98a6f;
+        --hairline: #3a342e;
+    }
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 2.5rem 1.25rem 4rem;
+    background: var(--canvas);
+    color: var(--ink);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+}
+
+main { max-width: 40rem; margin: 0 auto; }
+
+header { margin-bottom: 2.5rem; }
+
+h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+}
+
+.tagline { color: var(--ink-soft); margin: 0; }
+
+h2 {
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    margin: 2.5rem 0 0.75rem;
+}
+
+h3 {
+    font-size: 1rem;
+    margin: 1.75rem 0 0.4rem;
+}
+
+p, li { color: var(--ink); }
+p { margin: 0 0 1rem; }
+
+a { color: var(--accent); text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+.card {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.card > :first-child { margin-top: 0; }
+.card > :last-child { margin-bottom: 0; }
+
+ul { padding-left: 1.25rem; margin: 0 0 1rem; }
+li { margin-bottom: 0.35rem; }
+
+code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+    background: var(--canvas);
+    padding: 0.1em 0.35em;
+    border-radius: 5px;
+}
+
+.card code { background: var(--canvas); }
+
+footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hairline);
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+}
+
+footer a { color: var(--ink-soft); }
+
+.updated { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 2rem; }
