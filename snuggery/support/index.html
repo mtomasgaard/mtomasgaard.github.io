@@ -52,14 +52,45 @@ time it reads it. Try it with Run Tracker's <code>runs.csv</code>.</p>
 <h3>How do I get my work out?</h3>
 <p>Any item can be exported as a ZIP at any time, whether or not you have bought Snuggery:
 touch and hold its row in the Library (or swipe the row left) and choose <strong>Export</strong>.
-Nothing you make is ever locked inside the app.</p>
+Nothing you make is ever locked inside the app. To take the <em>whole</em> library at once — and
+to bring it back — use <strong>Settings → Backup</strong> instead; see “I got a new phone”.</p>
+
+<h3>My AI gave me a new version of a mini-app — how do I update it?</h3>
+<p>Touch and hold the app's row in the Library and choose <strong>Replace with a ZIP</strong>,
+then pick the new ZIP. Snuggery asks whether to <strong>keep saved data</strong> or
+<strong>start fresh</strong>: keeping it means the new version opens with everything the old one
+had stored — a tracker's entries, its settings — because the app itself is the same item, only its
+code changed.</p>
+<p>Importing the new ZIP instead makes a <em>second</em> app beside the first, and it starts empty:
+what an app saves belongs to the item it was saved in. If you have already done that, replace the
+original and delete the copy.</p>
 
 <h3>I got a new phone</h3>
-<p>Purchases restore through <strong>Settings → Restore Purchases</strong>. Your files and folders
-travel with an encrypted device backup or a direct device-to-device transfer. The records a
-mini-app keeps for itself (a tracker's entries, say) are stored by iOS's web engine, which only
-adds them to a backup once you have reopened that mini-app a day or more after first using it —
-so before switching phones, open the mini-apps whose data you care about, then back up.</p>
+<p>Purchases restore through <strong>Settings → Restore Purchases</strong>.</p>
+<p>For everything else, the reliable way is Snuggery's own backup:
+<strong>Settings → Backup → Back Up Everything</strong> writes a single <code>.snuggery</code>
+file holding your whole library — every file, folder and mini-app, and on iOS&nbsp;26 or later
+what each mini-app has saved. Keep it somewhere other than the phone. On the new phone,
+<strong>Settings → Restore from a Backup</strong> puts it all back; the Library's empty screen
+offers the same thing. Restoring replaces whatever is in the library at the time, and it tells
+you what the backup holds before it does.</p>
+<p>Your files and folders also travel with an encrypted device backup or a direct
+device-to-device transfer. The records a mini-app keeps for itself (a tracker's entries, say)
+are stored by iOS's web engine, which only adds them to a device backup once you have reopened
+that mini-app a day or more after first using it — which is the gap Snuggery's own backup
+closes.</p>
+<p>Snuggery will put one quiet line in your Library if it has been more than a fortnight
+since your last backup <em>and</em> something has changed since then — never a notification,
+never a badge, and <strong>Settings → Remind Me to Back Up</strong> turns it off for good.</p>
+<p>Backups are named <strong>“Snuggery Backup” and the date</strong>, so they sort by age
+wherever you keep them, and the restore browser shows only backups and ZIP files rather than
+everything on your phone. Two backups on the same day are offered the same name; your phone
+asks what to do about that, and Snuggery never replaces a file itself.</p>
+<p>Two things it does not do, said plainly: below iOS&nbsp;26 it carries the files but not what
+mini-apps saved — and a backup made on iOS&nbsp;26 cannot put that data back on an older phone
+either, though the files still come back. It never carries data an app kept in IndexedDB rather
+than local storage. Snuggery tells you which of those applies, both when you make a backup and
+before you restore one.</p>
 
 <h3>Do I need a subscription?</h3>
 <p>No. Snuggery is one payment, once. You get the complete app free for seven days first, and when
