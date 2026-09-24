@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Besseggen: a 3D mountain from Kartverket's open terrain — Snuggery</title>
+<meta name="description" content="How a 3D viewer of the Besseggen ridge was built from open Norwegian map data by asking an AI, and runs offline on an iPhone in Snuggery.">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<main class="note">
+
+<header>
+    <h1>Besseggen: a 3D mountain from Kartverket's open terrain</h1>
+    <p class="tagline">One of the example apps. Built by asking an AI; runs offline in Snuggery.</p>
+</header>
+
+<video aria-label="Clip: Besseggen running in Snuggery — the ridge in 3D, the view from the lake, the walk along the trail, focus mode" class="clip" controls muted playsinline preload="none" poster="../../media/clips/besseggen-poster.jpg" src="../../media/clips/besseggen.mp4"></video>
+
+<p>Besseggen is the ridge in Jotunheimen that everyone in Norway has either walked or been told to
+walk: a narrow spine between two lakes at different heights, one green, one blue. I wanted it on my
+phone in three dimensions — the real terrain, the marked trail draped on it, the sun where it
+actually is on a June morning so the shadows fall the right way — and I wanted it to work with no
+signal, because on the ridge there is none.</p>
+
+<p>The app is a folder of HTML and JavaScript. It was built by asking: a written brief, an AI
+workflow that fetched the data, wrote the pipeline and the app, reviewed its own work, and fixed
+what the review found. The brief said what the data was, what the app had to do, what it must never
+claim, and what a phone can render; the work took an afternoon. It runs inside Snuggery's sandbox,
+where a mini-app cannot reach the network, so every byte it needs travels inside its ZIP.</p>
+
+<h2>What is real in it</h2>
+
+<p>Everything on screen comes from four Kartverket datasets, retrieved on 22 September 2026 and
+credited in the app: the national 1-metre elevation model for the terrain, the trail database for
+the route, the N50 map data for the lakes, rivers and glaciers, and the central register of place
+names for the labels. The hillshade, the slope colouring, the elevation bands and the contours are
+all computed from the elevation data. Kartverket's own map tiles are <em>not</em> in it: nothing I
+could read in the licence said in terms that they may be cached for offline use, so the app draws
+its own map from the heights rather than ship a guess.</p>
+
+<p>The sun is real too. Pick a day and a time and the app places the sun where it will be, casts
+the terrain's shadows, and can tell you the first and last sun on any point you tap — useful for
+the col, which sits in shadow long after the tops are lit. The walking-time profile along the
+bottom uses Tobler's hiking function, the standard model of walking speed against slope, and you
+can change its pace factor; the numbers are a planning aid, not a promise.</p>
+
+<p>Two things it is not. It is not a navigation tool: no position fix, no compass, no live
+weather. Besseggen is exposed and the weather turns fast, and the app says so on its About panel.
+And the terrain is not photographic: it is heights, shaded, which is exactly why a 17 MB download
+works offline.</p>
+
+<h2>What it does</h2>
+
+<ul>
+    <li>Drag to turn, pinch to zoom, two fingers to pan; tap the ground to move the marker, and the elevation profile follows.</li>
+    <li>Saved viewpoints — from the boat on Gjende, from Bandet, on top of Veslfjellet — and a first-person walk along the route at the app's own flying speed.</li>
+    <li>Viewsheds and lines of sight: tap two points and it tells you whether one can be seen from the other, and which named peaks are visible from where you stand.</li>
+    <li>Vertical exaggeration, if you want the ridge to look the way it feels.</li>
+    <li>Focus mode: double-tap the view and the controls slide away, leaving the mountain the whole screen with a slim column of buttons at the side.</li>
+</ul>
+
+<figure>
+    <img loading="lazy" decoding="async" width="1304" height="1391" src="../../media/composites/besseggen.jpg" alt="Besseggen: the default view of the ridge, and the view from the boat on Gjende">
+    <figcaption>The ridge as the app opens, and the view from the boat on Gjende — a saved viewpoint.</figcaption>
+</figure>
+
+<h2>What building it taught me</h2>
+
+<p>The brief I wrote was wrong about the mountain, and the app corrected me. Its acceptance list
+assumed that Bandet, the col at the foot of the ridge, is visible from the top of Veslfjellet. It is
+not: the Besseggen crest at 1,628 metres blocks the line from a 1,743-metre eye down to Bandet at
+1,392 by 65 metres, and the app proved it three ways — its own terrain raster, its line-of-sight
+tool, and an independent march along the line. No point on the walk sees Bandet except Bandet. The
+eye-height slider exists for exactly this kind of question.</p>
+
+<p>Two more things the brief did not know came out of the build. The bounding box I had drawn cut
+off real skyline: 85 of 180 bearings from the summit lost their horizon, by up to 3.7 degrees, and
+a coarse 16-kilometre shell of terrain around the box fixes it for 1.3 megabytes. And Kartverket's
+service answers coarse requests from its own pyramids, which disagree with a decimation of its fine
+data by 4.6 metres on average and 65 at worst — so every level of detail is derived from one
+fetched master, or the levels would not agree at their seams.</p>
+
+<p>Then a review pass, told to distrust the finished work, found what only a phone would have
+shown: the camera was being saved on an event WKWebView never fires, and the fonts had shipped
+without their licence text. Among the smaller catches, eleven lakes had their water plane below
+their own lidar surface — from the shore of Bessvatnet the lake was brown ground. All of it was
+fixed and re-measured before the app was published. A brief that says what the app may not claim,
+and a review that assumes the brief was wrong somewhere, are what make asking for a thing like this
+work.</p>
+
+<p class="facts"><strong>Sources:</strong> Kartverket — Nasjonal høydemodell DTM1 (NLOD 2.0 / CC BY
+4.0), Turrutebasen, N50 Kartdata (CC BY 4.0), Sentralt stedsnavnregister (CC BY 4.0). three.js
+(MIT); Atkinson Hyperlegible and Newsreader (SIL OFL). The full text is in the app's About panel and
+in <a href="https://github.com/mtomasgaard/snuggery-apps-template/blob/main/besseggen/CREDITS.txt">CREDITS.txt</a>.</p>
+
+<p><a href="https://mtomasgaard.github.io/snuggery-apps-template/besseggen/">Open it in your browser</a>
+· <a href="https://github.com/mtomasgaard/snuggery-apps-template/raw/main/zips/besseggen.zip">Get the ZIP</a>
+for an iPhone with <a href="../../">Snuggery</a> · <a href="../../examples/">All the examples</a></p>
+
+<footer>Mathias Tomasgaard, September 2026. <a href="../../">Snuggery</a></footer>
+
+</main>
+</body>
+</html>

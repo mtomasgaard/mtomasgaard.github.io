@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The loop: how a Garmin dashboard refreshes itself without a server — Snuggery</title>
+<meta name="description" content="How a running dashboard on an iPhone refreshes itself every morning through a GitHub Action and a Shortcut, while the app that hosts it never goes online.">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<main class="note">
+
+<header>
+    <h1>The loop: how a Garmin dashboard refreshes itself without a server</h1>
+    <p class="tagline">The live examples, and the two hops that keep them live.</p>
+</header>
+
+<video aria-label="Clip: Running Dashboard inside Snuggery, its menu, and the Keep This Up To Date screen that explains the Shortcut loop" class="clip" controls muted playsinline preload="none" poster="../../media/clips/the-loop-poster.jpg" src="../../media/clips/the-loop.mp4"></video>
+
+<p>My running dashboard refreshes itself every morning, and no server of mine is involved. Snuggery, the app it lives in, makes no network requests at all —
+that is a rule of the sandbox, not a setting. So how does a file on the phone come to hold last
+night's sleep and this morning's readiness?</p>
+
+<figure>
+    <img loading="lazy" decoding="async" width="1200" height="880" src="../../media/data-flow.svg" alt="A job writes one JSON file to a repository; a Shortcut on the phone copies it into the app; the app redraws">
+    <figcaption>Two hops. The code hop happens once; the data hop happens on a schedule.</figcaption>
+</figure>
+
+<h2>Two hops, deliberately separate</h2>
+
+<p><strong>The code hop happens once.</strong> The app is a folder of HTML that an AI wrote from a
+prompt; it arrives as a ZIP and is imported into Snuggery. It reads one file next to it,
+<em>data/snapshot.json</em>, and draws everything from that. If the app changes, a new ZIP replaces
+it in place — Snuggery has a control for that — but that is rare.</p>
+
+<p><strong>The data hop happens on a schedule.</strong> A GitHub Action runs a script that signs in
+to Garmin Connect with my own account, fetches what is new, and rebuilds that one JSON file in a
+repository. Then a Shortcut on the phone does the only thing that has to happen on the phone: it
+fetches the file and hands it to the app through an action Snuggery provides, <em>Update a File in
+a Snuggery App</em>. The dashboard redraws in place, same tab, same scroll position. There is also a
+<em>Rebuild Data Now</em> button in the app's menu that runs the shortcut on demand.</p>
+
+<p>Nothing in this chain is mine to run. GitHub runs the job on its free tier; the phone runs the
+Shortcut; the app accepts a file. Snuggery never fetches, and the token that lets the Shortcut read
+a private repository lives in the Shortcut, not in the app.</p>
+
+<h2>What is in the template</h2>
+
+<p>The <a href="https://github.com/mtomasgaard/snuggery-apps-template">open template repository</a>
+holds the whole loop for eight live apps: the workflow that fetches, the script that builds the
+snapshot, and — for the two that need credentials — a demo with made-up data so the app draws
+something before you connect anything. Five of them — a clock, world headlines, tomorrow's electricity prices, global wind and
+weather — need no key and no account at all; they refresh from open sources from the moment you
+install them. The Running Dashboard needs a Garmin sign-in and a copy of the template of your own,
+and its <em>PROMPT.md</em> walks an AI session through setting that up, including the one thing
+it must never do: put the sign-in tokens anywhere but the repository's secrets.</p>
+
+<p>Snuggery's own screen for this is called <em>Keep This Up To Date</em>. It explains the loop,
+offers the ready-made shortcut to add with one tap, and shows the row to fill in for each app. The
+Create tab's prompt teaches the same shape to whatever AI writes your next app, so a new dashboard
+is one more row in the shortcut, not a new setup.</p>
+
+<h2>Two things learned the hard way</h2>
+
+<p>First: GitHub's scheduled workflows on a personal account are not a clock. Over twenty-four
+measured hours, the schedule fired 5 of 24 hourly slots, in batches, with gaps of two to five hours;
+an external cron service dispatching the same workflow hit 22 of 22 slots, each within a minute.
+The template's scheduler folder has the recipe, and the app's guidance presents the options —
+GitHub's schedule, an external trigger, an agent session, the phone — with their trade-offs, so you
+can pick the one that fits your setup rather than the one I picked.</p>
+
+<p>Second: a shared Shortcut publishes its headers. A token pasted into a shortcut that is then
+shared is shared with it. And a private repository answers a bad token with <em>404</em>, not
+<em>401</em>, with a body that is valid JSON — which the intent would happily write over good data.
+Both warnings now sit in the guidance at the exact point where it first asks for a token.</p>
+
+<p><strong>The raw store never ships.</strong> A copy of the Running Dashboard that has pulled real
+data holds a per-second GPS trace of every run, most of which start at someone's front door. That
+store lives in the app's folder in the repository and is left out of every ZIP the template builds,
+and a commit that touches only it rebuilds nothing.</p>
+
+<p class="facts"><strong>The demo's data</strong> is generated: nine months of running with a
+half-marathon block in progress, its streamed runs cut from six famous marathon courses
+(OpenStreetMap-derived, ODbL) on public-domain USGS tiles, and a coaching write-up composed for
+that runner. The template README says so, because on screen it is built to look like a real copy.</p>
+
+<p><a href="https://mtomasgaard.github.io/snuggery-apps-template/running-dashboard/">Open the dashboard in your browser</a>
+· <a href="https://github.com/mtomasgaard/snuggery-apps-template/raw/main/zips/running-dashboard.zip">Get the ZIP</a>
+for an iPhone with <a href="../../">Snuggery</a> · <a href="../../examples/">All the examples</a></p>
+
+<footer>Mathias Tomasgaard, September 2026. <a href="../../">Snuggery</a></footer>
+
+</main>
+</body>
+</html>

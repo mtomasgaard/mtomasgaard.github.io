@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snuggery — press</title>
+<meta name="description" content="Press kit for Snuggery: the facts, short clips and App Store screenshots, ready to use.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+
+<header>
+    <h1>Press</h1>
+    <p class="tagline">The facts, the clips and the screenshots — use any of it.</p>
+</header>
+
+<div class="card">
+    <p><strong>Snuggery</strong> is an iPhone app for the small apps people build by asking an AI.
+    Ask for a training log, a recipe box or a dashboard and you get a folder of HTML with nowhere to
+    run it on a phone; Snuggery is where it lives. Import the ZIP, tap it, it runs — offline, in a
+    sandbox that cannot reach the network, beside the user's PDFs, notes and spreadsheets. Apps read
+    the data files stored next to them, which the user can edit in place. Version 1.1 adds dashboards
+    that refresh themselves through Shortcuts, and <em>Ask</em>: a question about a file, a folder or
+    a mini-app's data, answered on the phone by Apple's on-device model. Made by one developer in
+    Norway. One purchase after a free week.</p>
+</div>
+
+<h2>The facts</h2>
+
+<ul>
+    <li><strong>Platform:</strong> iPhone, iOS 18 and later. Ask needs a phone with Apple Intelligence (iOS 26).</li>
+    <li><strong>Price:</strong> one purchase after a complete 7-day trial. No subscription, no account. When the trial ends only adding new content is gated; everything already imported keeps working and can always be exported.</li>
+    <li><strong>What it does not do:</strong> generate apps. Its Create tab writes a prompt for the user's own AI; the ZIP that comes back is what gets imported. The app contacts no AI service.</li>
+    <li><strong>Privacy:</strong> no account, no analytics, no third-party frameworks; the app makes no network requests of its own. Mini-apps are blocked from the network by a WebKit content rule list, a Content-Security-Policy header and the navigation policy, independently, and there is no JavaScript-to-native bridge. The review note invites Apple to review it in Airplane Mode; you can too. <a href="../privacy/">The privacy policy</a> is short enough to read in a minute.</li>
+    <li><strong>App Review:</strong> approved by App Review; the review note makes the guideline 4.7 (HTML5 mini apps) case explicitly — the app distributes nothing; every mini-app is a file the user imported, the way a document viewer holds documents.</li>
+    <li><strong>Live dashboards:</strong> a GitHub Action (or any scheduler) writes a small JSON file; a Shortcut on the phone copies it into the app through an App Intent, on the user's schedule. The app also has a <em>Rebuild Data Now</em> button that runs that shortcut. Snuggery never fetches anything itself.</li>
+    <li><strong>The examples:</strong> twelve apps in an <a href="https://github.com/mtomasgaard/snuggery-apps-template">open template repository</a>, all built by asking an AI — a 3D mountain from Kartverket's open terrain, the Norne oil-field benchmark with its topside, the galaxy from JPL and Gaia data, a human body in 934 parts, a Garmin dashboard. They <a href="https://mtomasgaard.github.io/snuggery-apps-template/">run in a browser</a> too.</li>
+    <li><strong>Built with:</strong> Apple frameworks only — SwiftUI, SwiftData, WebKit, StoreKit 2, App Intents and, for Ask, Foundation Models; no third-party code. Mini-apps are served over a custom URL scheme whose handler is a static file server for one package directory, each app with its own origin; ZIP import inspects every entry before extracting and is bounded by absolute limits, never compression ratios.</li>
+    <li><strong>App Store:</strong> <a href="https://apps.apple.com/app/id6805883209">apps.apple.com/app/id6805883209</a></li>
+    <li><strong>Contact:</strong> <a href="mailto:mtomasgaard+snuggery@gmail.com">mtomasgaard+snuggery@gmail.com</a> — codes for the purchase on request.</li>
+</ul>
+
+<h2>Clips</h2>
+
+<p>Vertical, 1080×1920, H.264, no sound, captions burned in. Recorded from the app on the
+simulator with its own examples; nothing retouched. Right-click or long-press to save.</p>
+
+<ul class="gallery">
+    <li><video aria-label="Clip: Besseggen running in Snuggery — the ridge in 3D, the view from the lake, the walk along the trail, focus mode" class="clip" controls muted playsinline preload="none" poster="../media/clips/besseggen-poster.jpg" src="../media/clips/besseggen.mp4"></video><p><a href="../media/clips/besseggen.mp4">besseggen.mp4</a> — a mountain in 3D from open map data</p></li>
+    <li><video aria-label="Clip: Norne Reservoir running in Snuggery — the reservoir grid, the field rising out of the sea around it, the flow animation, the map of where the gas goes" class="clip" controls muted playsinline preload="none" poster="../media/clips/norne-poster.jpg" src="../media/clips/norne.mp4"></video><p><a href="../media/clips/norne.mp4">norne.mp4</a> — an oil field's reservoir and platform from open data</p></li>
+    <li><video aria-label="Clip: Milky Way running in Snuggery — the planets with time running, the Sun's neighbourhood, the whole galaxy" class="clip" controls muted playsinline preload="none" poster="../media/clips/milky-way-poster.jpg" src="../media/clips/milky-way.mp4"></video><p><a href="../media/clips/milky-way.mp4">milky-way.mp4</a> — from the planets to the galaxy, from real data</p></li>
+    <li><video aria-label="Clip: Anatomy running in Snuggery — the body, the skin peeled, the parts pulled apart, a slow turn" class="clip" controls muted playsinline preload="none" poster="../media/clips/anatomy-poster.jpg" src="../media/clips/anatomy.mp4"></video><p><a href="../media/clips/anatomy.mp4">anatomy.mp4</a> — 934 anatomical structures on a phone</p></li>
+    <li><video aria-label="Clip: Running Dashboard inside Snuggery, its menu, and the Keep This Up To Date screen that explains the Shortcut loop" class="clip" controls muted playsinline preload="none" poster="../media/clips/the-loop-poster.jpg" src="../media/clips/the-loop.mp4"></video><p><a href="../media/clips/the-loop.mp4">the-loop.mp4</a> — a dashboard that refreshes itself every morning</p></li>
+    <li><video aria-label="Clip: Ask in Snuggery — a question typed about a mini-app's data, answered on the phone" class="clip" controls muted playsinline preload="none" poster="../media/clips/ask-poster.jpg" src="../media/clips/ask.mp4"></video><p><a href="../media/clips/ask.mp4">ask.mp4</a> — a question about your own file, answered on the phone</p></li>
+</ul>
+
+<h2>App Store screenshots (6.9", 1320×2868)</h2>
+
+<ul class="downloads">
+    <li><a href="../media/store/05-starter-pack-light.png"><img loading="lazy" decoding="async" width="276" height="600" src="../media/store/thumbs/05-starter-pack-light.jpg" alt="The Library with the three example folders"></a>The Library</li>
+    <li><a href="../media/store/07-besseggen-light.png"><img loading="lazy" decoding="async" width="276" height="600" src="../media/store/thumbs/07-besseggen-light.jpg" alt="Besseggen in full screen"></a>Besseggen</li>
+    <li><a href="../media/store/03-norne-reservoir-light.png"><img loading="lazy" decoding="async" width="276" height="600" src="../media/store/thumbs/03-norne-reservoir-light.jpg" alt="Norne Reservoir in full screen"></a>Norne Reservoir</li>
+    <li><a href="../media/store/01-anatomy-light.png"><img loading="lazy" decoding="async" width="276" height="600" src="../media/store/thumbs/01-anatomy-light.jpg" alt="Anatomy in full screen"></a>Anatomy</li>
+    <li><a href="../media/store/02-running-dashboard-light.png"><img loading="lazy" decoding="async" width="276" height="600" src="../media/store/thumbs/02-running-dashboard-light.jpg" alt="Running Dashboard"></a>Running Dashboard</li>
+    <li><a href="../media/store/06-global-wind-light.png"><img loading="lazy" decoding="async" width="276" height="600" src="../media/store/thumbs/06-global-wind-light.jpg" alt="Global Wind"></a>Global Wind</li>
+    <li><a href="../media/store/10-power-hours-light.png"><img loading="lazy" decoding="async" width="276" height="600" src="../media/store/thumbs/10-power-hours-light.jpg" alt="Power Hours"></a>Power Hours</li>
+    <li><a href="../media/store/08-recipe-box-light.png"><img loading="lazy" decoding="async" width="276" height="600" src="../media/store/thumbs/08-recipe-box-light.jpg" alt="Recipe Box"></a>Recipe Box</li>
+    <li><a href="../media/store/04-create-light.png"><img loading="lazy" decoding="async" width="276" height="600" src="../media/store/thumbs/04-create-light.jpg" alt="The Create tab with a prompt"></a>Create</li>
+    <li><a href="../media/store/09-keep-up-to-date-light.png"><img loading="lazy" decoding="async" width="276" height="600" src="../media/store/thumbs/09-keep-up-to-date-light.jpg" alt="Keep This Up To Date"></a>Keep This Up To Date</li>
+</ul>
+
+<h2>Icon and diagram</h2>
+
+<ul class="downloads">
+    <li><a href="../media/icon-512.png"><img loading="lazy" decoding="async" width="512" height="512" src="../media/icon-512.png" alt="The Snuggery app icon"></a>Icon, 512 px</li>
+    <li><a href="../media/data-flow.svg"><img loading="lazy" decoding="async" width="1200" height="880" src="../media/data-flow.svg" alt="How the data reaches a live app: a job writes a file, a Shortcut copies it in"></a>The loop, as a diagram</li>
+</ul>
+
+<h2>Write-ups</h2>
+
+<ul>
+    <li><a href="../notes/besseggen/">Besseggen: a 3D mountain from Kartverket's open terrain</a></li>
+    <li><a href="../notes/norne/">Norne: an oil field's underground and its topside from open data</a></li>
+    <li><a href="../notes/milky-way/">Milky Way: the planets to the galaxy from JPL and Gaia</a></li>
+    <li><a href="../notes/the-loop/">The loop: how a Garmin dashboard refreshes itself without a server</a></li>
+</ul>
+
+<footer>
+    Snuggery is made by an independent developer. <a href="../">Back to Snuggery.</a>
+</footer>
+
+</main>
+</body>
+</html>

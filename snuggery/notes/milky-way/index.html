@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Milky Way: the planets to the galaxy, from JPL and Gaia — Snuggery</title>
+<meta name="description" content="How a 3D zoom from the planets to the whole galaxy was built from real, attributed data only, by asking an AI, and runs offline on an iPhone in Snuggery.">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<main class="note">
+
+<header>
+    <h1>Milky Way: the planets to the galaxy, from JPL and Gaia</h1>
+    <p class="tagline">One of the example apps. Built by asking an AI; runs offline in Snuggery.</p>
+</header>
+
+<video aria-label="Clip: Milky Way running in Snuggery — the planets with time running, the Sun's neighbourhood, the whole galaxy" class="clip" controls muted playsinline preload="none" poster="../../media/clips/milky-way-poster.jpg" src="../../media/clips/milky-way.mp4"></video>
+
+<p>I wanted one continuous zoom: start a few hundred kilometres above a moon, pinch, and keep going
+until the whole galaxy is in view and the Sun is a dot two thirds of the way out — with nothing on
+the way invented. Every planetarium app I know fills the gaps with artwork. This one shows what has
+been measured, says when a published fit is standing in for a measurement, and shows nothing at
+all where nothing real could be found.</p>
+
+<p>It is a 6.5 MB download — a folder of HTML and JavaScript that runs offline in Snuggery's sandbox. It
+was built by asking: a brief that named the sources and the rule above, an AI workflow that fetched
+each dataset from a pinned address and checked it against a recorded checksum, wrote the
+pipeline and the app, and then reviewed the result against the rule.</p>
+
+<h2>What is real in it</h2>
+
+<ul>
+    <li>The Sun, the planets and the Moon from JPL's DE430 ephemeris, for any date from 1900 to 2100; 21 moons of Mars and the giant planets from 1950 to 2050; each globe turned by the IAU rotation model, with NASA and USGS maps on it.</li>
+    <li>9,989 asteroids and comets from the JPL Small-Body Database, the Minor Planet Center and ESA's NEO Coordination Centre, propagated on the phone.</li>
+    <li>220,000 stars in three dimensions, mostly at their Gaia distances, drawn at their true brightness; the constellation figures come apart as you leave the Sun, because they are lines of sight, not shapes.</li>
+    <li>The galaxy as it has actually been measured: globular clusters, satellite galaxies, stellar streams, where the young stars crowd, and two published spiral-arm fits, each labelled as a fit — no artist's impression anywhere.</li>
+    <li>A time bar in the Solar System, from an hour to a year per second, with each planet trailing its real path. Outside the Solar System the bar hides: at those scales nothing visibly moves in a human lifetime, and the app does not pretend otherwise.</li>
+</ul>
+
+<p>Tap anything — a planet, a star, a stream, a spiral-arm fit — for a card with what is known
+about it and where the number comes from. The About panel lists every source, its licence and its
+accuracy note.</p>
+
+<figure>
+    <img loading="lazy" decoding="async" width="1304" height="1385" src="../../media/composites/milky-way.jpg" alt="Milky Way: the Solar System with the planets on their orbits, and the galaxy seen from outside">
+    <figcaption>The two ends of the zoom: the Solar System with time running, and the galaxy from outside with the Sun marked.</figcaption>
+</figure>
+
+<h2>One zoom across fifteen orders of magnitude</h2>
+
+<p>The hard part is numbers, not pictures. A camera that can be 300 kilometres from a moon and
+four light-hours from Neptune in the same scene cannot live in 32-bit floats. So the camera lives in
+64-bit, in astronomical units, and nothing on the GPU ever sees those values: each frame is drawn in
+three passes — the stars in parsecs around the Sun, the galaxy in kiloparsecs in its own frame,
+and the Solar System in AU relative to a floating origin at whatever you are looking at, scaled so
+the target is one unit away. The GPU only ever holds offsets from the thing in front of you.</p>
+
+<p>"Up" is not fixed either. Near the Sun it is the ecliptic pole, so the planets lie flat; beyond
+about a light-year it is the galactic pole, so the disc does; in between it turns smoothly, and
+leaving the Solar System shows its plane tilting by about sixty degrees against the galaxy's, which
+is the real angle between them.</p>
+
+<h2>A note on the licences</h2>
+
+<p>The star, sky and young-star map files contain data from the European Space Agency's Gaia
+mission, processed by its Data Processing and Analysis Consortium, which is licensed for
+non-commercial use only; the app's <em>CREDITS.txt</em> says so, file by file, and so does the
+template's licence. The two young-star maps are redistributed under a permission their authors
+gave to another project, and no separate grant to downstream copies was found — which the credits
+also say, because saying what you do not know is the whole point of the app.</p>
+
+<p class="facts"><strong>Sources:</strong> JPL/NAIF DE430 and satellite ephemerides; the JPL
+Small-Body Database, the Minor Planet Center and ESA NEOCC; NASA and USGS planetary maps; AT-HYG
+and HYG (CC BY-SA 4.0) and Gaia DR3 (CC BY-NC 3.0 IGO); Stellarium (CC BY-SA 4.0); the Local Volume
+Database (CC0), galstreams (BSD), SpiralMap (MIT), Agama (BSD/MIT); the Open Exoplanet Catalogue
+(MIT); three.js (MIT). In full in
+<a href="https://github.com/mtomasgaard/snuggery-apps-template/blob/main/milky-way/CREDITS.txt">CREDITS.txt</a>.</p>
+
+<p><a href="https://mtomasgaard.github.io/snuggery-apps-template/milky-way/">Open it in your browser</a>
+· <a href="https://github.com/mtomasgaard/snuggery-apps-template/raw/main/zips/milky-way.zip">Get the ZIP</a>
+for an iPhone with <a href="../../">Snuggery</a> · <a href="../../examples/">All the examples</a></p>
+
+<footer>Mathias Tomasgaard, September 2026. <a href="../../">Snuggery</a></footer>
+
+</main>
+</body>
+</html>

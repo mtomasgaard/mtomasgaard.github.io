@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="880" viewBox="0 0 1200 880" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+<defs><marker id="ah-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f8a4c"/></marker><marker id="ah-code" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3b4fd8"/></marker><marker id="ah-trigger" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8a7420"/></marker></defs>
+<rect width="1200" height="880" fill="#eef0f4"/>
+<path id="e1" d="M 300 375 L 420 375" fill="none" stroke="#1f8a4c" stroke-width="3" marker-end="url(#ah-data)"/>
+<text x="360" y="360" font-size="15" fill="#1f8a4c" text-anchor="middle" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">what it knows</text>
+<circle r="6" fill="#1f8a4c"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0s"><mpath href="#e1" xlink:href="#e1"/></animateMotion></circle>
+<path id="e2" d="M 590 148 L 590 220" fill="none" stroke="#8a7420" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round" marker-end="url(#ah-trigger)"/>
+<text x="604" y="190" font-size="15" fill="#8a7420" text-anchor="start" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">starts a run</text>
+<circle r="5" fill="#8a7420"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0s"><mpath href="#e2" xlink:href="#e2"/></animateMotion></circle>
+<path id="e3" d="M 760 300 C 830 300, 830 225, 880 225" fill="none" stroke="#1f8a4c" stroke-width="3" marker-end="url(#ah-data)"/>
+<text x="820" y="270" font-size="15" fill="#1f8a4c" text-anchor="middle" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">snapshot.json</text>
+<circle r="6" fill="#1f8a4c"><animateMotion dur="2.6s" repeatCount="indefinite" begin="2.6s"><mpath href="#e3" xlink:href="#e3"/></animateMotion></circle>
+<path id="e4" d="M 760 405 C 830 405, 830 570, 880 570" fill="none" stroke="#3b4fd8" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#ah-code)"/>
+<text x="874" y="552" font-size="15" fill="#3b4fd8" text-anchor="end" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">the app ZIP, once</text>
+<circle r="5" fill="#3b4fd8"><animateMotion dur="3s" repeatCount="indefinite" begin="1.3s"><mpath href="#e4" xlink:href="#e4"/></animateMotion></circle>
+<path id="e5" d="M 555 434 L 555 530" fill="none" stroke="#1f8a4c" stroke-width="3" marker-end="url(#ah-data)"/>
+<text x="540" y="488" font-size="15" fill="#1f8a4c" text-anchor="end" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">reads</text>
+<circle r="6" fill="#1f8a4c"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1s"><mpath href="#e5" xlink:href="#e5"/></animateMotion></circle>
+<path id="e6" d="M 625 530 L 625 434" fill="none" stroke="#1f8a4c" stroke-width="3" marker-end="url(#ah-data)"/>
+<text x="640" y="488" font-size="15" fill="#1f8a4c" text-anchor="start" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">writes text back</text>
+<circle r="6" fill="#1f8a4c"><animateMotion dur="2.2s" repeatCount="indefinite" begin="2.1s"><mpath href="#e6" xlink:href="#e6"/></animateMotion></circle>
+<path id="e7" d="M 960 310 L 960 470" fill="none" stroke="#1f8a4c" stroke-width="3" marker-end="url(#ah-data)"/>
+<text x="946" y="395" font-size="15" fill="#1f8a4c" text-anchor="end" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">Replace Mini-App Data</text>
+<circle r="6" fill="#1f8a4c"><animateMotion dur="2s" repeatCount="indefinite" begin="5.2s"><mpath href="#e7" xlink:href="#e7"/></animateMotion></circle>
+<path id="e8" d="M 1060 470 L 1060 310" fill="none" stroke="#8a7420" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round" marker-end="url(#ah-trigger)"/>
+<text x="1074" y="395" font-size="15" fill="#8a7420" text-anchor="start" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">Run now</text>
+<circle r="5" fill="#8a7420"><animateMotion dur="1.8s" repeatCount="indefinite" begin="4s"><mpath href="#e8" xlink:href="#e8"/></animateMotion></circle>
+<path id="e9" d="M 1000 130 C 1000 20, 800 20, 762 230" fill="none" stroke="#8a7420" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round" marker-end="url(#ah-trigger)"/>
+<text x="900" y="35" font-size="15" fill="#8a7420" text-anchor="middle" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">rebuild on demand, then wait</text>
+<circle r="5" fill="#8a7420"><animateMotion dur="3s" repeatCount="indefinite" begin="5.8s"><mpath href="#e9" xlink:href="#e9"/></animateMotion></circle>
+<rect x="40" y="288" width="260" height="174" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="2"/>
+<path d="M 40 302 a 14 14 0 0 1 14 -14 h 232 a 14 14 0 0 1 14 14 v 32 h -260 z" fill="#f4f6fa"/>
+<line x1="40" y1="334" x2="300" y2="334" stroke="#dfe3ea" stroke-width="1.5"/>
+<text x="60" y="318" font-size="20" font-weight="700" fill="#1b1f27">The source</text>
+<text x="280" y="317" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">API OR FEED</text>
+<text x="60" y="366" font-size="16" fill="#5c6472">A bank, a watch, a weather</text>
+<text x="60" y="390" font-size="16" fill="#5c6472">or a price service. Read with</text>
+<text x="60" y="414" font-size="16" fill="#5c6472">your own sign-in; secrets</text>
+<text x="60" y="438" font-size="16" fill="#5c6472">live in the repo.</text>
+<rect x="440" y="30" width="300" height="118" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="2"/>
+<path d="M 440 44 a 14 14 0 0 1 14 -14 h 272 a 14 14 0 0 1 14 14 v 32 h -300 z" fill="#f4f6fa"/>
+<line x1="440" y1="76" x2="740" y2="76" stroke="#dfe3ea" stroke-width="1.5"/>
+<text x="460" y="60" font-size="20" font-weight="700" fill="#1b1f27">The clock</text>
+<text x="720" y="59" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">PICK ONE</text>
+<text x="460" y="108" font-size="16" fill="#5c6472">GitHub's schedule, cron-job.org,</text>
+<text x="460" y="132" font-size="16" fill="#5c6472">or a Cloudflare Worker.</text>
+<rect x="420" y="220" width="340" height="214" rx="14" fill="#ffffff" stroke="#3b4fd8" stroke-width="2.5"/>
+<path d="M 420 234 a 14 14 0 0 1 14 -14 h 312 a 14 14 0 0 1 14 14 v 32 h -340 z" fill="#f4f6fa"/>
+<line x1="420" y1="266" x2="760" y2="266" stroke="#dfe3ea" stroke-width="1.5"/>
+<text x="440" y="250" font-size="20" font-weight="700" fill="#1b1f27">GitHub: your private copy</text>
+<text x="740" y="249" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">REPO</text>
+<text x="440" y="298" font-size="16" fill="#5c6472">A scheduled Action runs the pull:</text>
+<text x="440" y="322" font-size="15" fill="#1b1f27" font-family="Menlo, Consolas, monospace">pull script → raw files</text>
+<text x="440" y="348" font-size="15" fill="#1b1f27" font-family="Menlo, Consolas, monospace">build → data/snapshot.json</text>
+<text x="440" y="374" font-size="16" fill="#5c6472">one small JSON file the phone copies.</text>
+<text x="440" y="398" font-size="15" fill="#1b1f27" font-family="Menlo, Consolas, monospace">build-zips.yml → the app ZIP</text>
+<rect x="440" y="530" width="300" height="180" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="2"/>
+<path d="M 440 544 a 14 14 0 0 1 14 -14 h 272 a 14 14 0 0 1 14 14 v 32 h -300 z" fill="#f4f6fa"/>
+<line x1="440" y1="576" x2="740" y2="576" stroke="#dfe3ea" stroke-width="1.5"/>
+<text x="460" y="560" font-size="20" font-weight="700" fill="#1b1f27">Your AI agent</text>
+<text x="720" y="559" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">OPTIONAL, DAILY</text>
+<text x="460" y="608" font-size="16" fill="#5c6472">Reads what the pull committed.</text>
+<text x="460" y="632" font-size="16" fill="#5c6472">Writes evaluations or plans back</text>
+<text x="460" y="656" font-size="16" fill="#5c6472">into the repo; the next build carries</text>
+<text x="460" y="680" font-size="16" fill="#5c6472">them into the snapshot.</text>
+<rect x="880" y="130" width="290" height="180" rx="14" fill="#ffffff" stroke="#1f8a4c" stroke-width="2.5"/>
+<path d="M 880 144 a 14 14 0 0 1 14 -14 h 262 a 14 14 0 0 1 14 14 v 32 h -290 z" fill="#f4f6fa"/>
+<line x1="880" y1="176" x2="1170" y2="176" stroke="#dfe3ea" stroke-width="1.5"/>
+<text x="900" y="160" font-size="20" font-weight="700" fill="#1b1f27">Shortcuts</text>
+<text x="1150" y="159" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">ON THE PHONE</text>
+<text x="900" y="208" font-size="16" fill="#5c6472">An automation fetches the file</text>
+<text x="900" y="232" font-size="16" fill="#5c6472">with a read-only token and hands</text>
+<text x="900" y="256" font-size="16" fill="#5c6472">it to the app. A second shortcut</text>
+<text x="900" y="280" font-size="16" fill="#5c6472">starts a run and waits for it.</text>
+<rect x="880" y="470" width="290" height="190" rx="14" fill="#ffffff" stroke="#1f8a4c" stroke-width="2.5"/>
+<path d="M 880 484 a 14 14 0 0 1 14 -14 h 262 a 14 14 0 0 1 14 14 v 32 h -290 z" fill="#f4f6fa"/>
+<line x1="880" y1="516" x2="1170" y2="516" stroke="#dfe3ea" stroke-width="1.5"/>
+<text x="900" y="500" font-size="20" font-weight="700" fill="#1b1f27">Snuggery</text>
+<text x="1150" y="499" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">OFFLINE</text>
+<text x="900" y="548" font-size="16" font-weight="700" fill="#1b1f27">The mini-app</text>
+<text x="900" y="572" font-size="16" fill="#5c6472">redraws in place when the file lands.</text>
+<text x="900" y="596" font-size="16" font-weight="700" fill="#1b1f27">Run now</text>
+<text x="900" y="620" font-size="16" fill="#5c6472">starts the rebuild shortcut.</text>
+<line x1="60" y1="840" x2="100" y2="840" stroke="#1f8a4c" stroke-width="3"/><text x="112" y="845" font-size="16" fill="#5c6472">data hop, on a schedule</text>
+<line x1="330" y1="840" x2="370" y2="840" stroke="#3b4fd8" stroke-width="3" stroke-dasharray="9 7"/><text x="382" y="845" font-size="16" fill="#5c6472">code hop, once</text>
+<line x1="540" y1="840" x2="580" y2="840" stroke="#8a7420" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round"/><text x="592" y="845" font-size="16" fill="#5c6472">trigger: starts a run</text>
+</svg>
