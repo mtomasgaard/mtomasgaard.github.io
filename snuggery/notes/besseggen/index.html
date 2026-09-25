@@ -65,29 +65,15 @@ works offline.</p>
     <figcaption>The ridge as the app opens, and the view from the boat on Gjende — a saved viewpoint.</figcaption>
 </figure>
 
-<h2>What building it taught me</h2>
+<h2>What the app corrected</h2>
 
-<p>The brief I wrote was wrong about the mountain, and the app corrected me. Its acceptance list
-assumed that Bandet, the col at the foot of the ridge, is visible from the top of Veslfjellet. It is
-not: the Besseggen crest at 1,628 metres blocks the line from a 1,743-metre eye down to Bandet at
-1,392 by 65 metres, and the app proved it three ways — its own terrain raster, its line-of-sight
-tool, and an independent march along the line. No point on the walk sees Bandet except Bandet. The
-eye-height slider exists for exactly this kind of question.</p>
-
-<p>Two more things the brief did not know came out of the build. The bounding box I had drawn cut
-off real skyline: 85 of 180 bearings from the summit lost their horizon, by up to 3.7 degrees, and
-a coarse 16-kilometre shell of terrain around the box fixes it for 1.3 megabytes. And Kartverket's
-service answers coarse requests from its own pyramids, which disagree with a decimation of its fine
-data by 4.6 metres on average and 65 at worst — so every level of detail is derived from one
-fetched master, or the levels would not agree at their seams.</p>
-
-<p>Then a review pass, told to distrust the finished work, found what only a phone would have
-shown: the camera was being saved on an event WKWebView never fires, and the fonts had shipped
-without their licence text. Among the smaller catches, eleven lakes had their water plane below
-their own lidar surface — from the shore of Bessvatnet the lake was brown ground. All of it was
-fixed and re-measured before the app was published. A brief that says what the app may not claim,
-and a review that assumes the brief was wrong somewhere, are what make asking for a thing like this
-work.</p>
+<p>The brief I wrote was wrong about the mountain, and the app put me right. It assumed that
+Bandet, the col at the foot of the ridge, is visible from the top of Veslfjellet. It is not: the
+Besseggen crest at 1,628 metres blocks the line from a 1,743-metre eye down to Bandet at 1,392 by
+65 metres, and the app proved it three ways — its own terrain raster, its line-of-sight tool, and
+an independent march along the line. No point on the walk sees Bandet except Bandet. The
+eye-height slider exists for exactly this kind of question, and the answer is the kind of thing a
+map cannot tell you and the ridge can.</p>
 
 <p class="facts"><strong>Sources:</strong> Kartverket — Nasjonal høydemodell DTM1 (NLOD 2.0 / CC BY
 4.0), Turrutebasen, N50 Kartdata (CC BY 4.0), Sentralt stedsnavnregister (CC BY 4.0). three.js
