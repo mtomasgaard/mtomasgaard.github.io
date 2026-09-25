@@ -113,11 +113,12 @@ footer a { color: var(--ink-soft); }
 .clip {
     display: block;
     width: 100%;
-    max-width: 22rem;
+    max-width: 20rem;
     margin: 1.5rem auto;
-    border-radius: 18px;
-    background: #131320;
-    aspect-ratio: 9 / 16;
+    border-radius: 24px;
+    background: transparent;
+    aspect-ratio: 1320 / 2868;
+    object-fit: cover;
 }
 .clip-still { display: none; }
 @media (prefers-reduced-motion: reduce) {
