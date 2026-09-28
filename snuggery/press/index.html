@@ -35,7 +35,7 @@
     <li><strong>Privacy:</strong> no account, no analytics, no third-party frameworks; the app makes no network requests of its own. Mini-apps are blocked from the network by a WebKit content rule list, a Content-Security-Policy header and the navigation policy, independently, and there is no JavaScript-to-native bridge. The review note invites Apple to review it in Airplane Mode; you can too. <a href="../privacy/">The privacy policy</a> is short enough to read in a minute.</li>
     <li><strong>App Review:</strong> approved by App Review; the review note makes the guideline 4.7 (HTML5 mini apps) case explicitly — the app distributes nothing; every mini-app is a file the user imported, the way a document viewer holds documents.</li>
     <li><strong>Live dashboards:</strong> a GitHub Action (or any scheduler) writes a small JSON file; a Shortcut on the phone copies it into the app through an App Intent, on the user's schedule. The app also has a <em>Rebuild Data Now</em> button that runs that shortcut. Snuggery never fetches anything itself.</li>
-    <li><strong>The examples:</strong> twelve apps in an <a href="https://github.com/mtomasgaard/snuggery-apps-template">open template repository</a>, all built by asking an AI — a 3D mountain from Kartverket's open terrain, the Norne oil-field benchmark with its topside, the galaxy from JPL and Gaia data, a human body in 934 parts, a Garmin dashboard. They <a href="https://mtomasgaard.github.io/snuggery-apps-template/">run in a browser</a> too.</li>
+    <li><strong>The examples:</strong> fourteen apps in an <a href="https://github.com/mtomasgaard/snuggery-apps-template">open template repository</a>, all built by asking an AI — a 3D mountain from Kartverket's open terrain, the Norne oil-field reservoir model, two atlases of the North Sea's and the world's oil and gas, the galaxy from JPL and Gaia data, a human body in 934 parts, a Garmin dashboard. They <a href="https://mtomasgaard.github.io/snuggery-apps-template/">run in a browser</a> too.</li>
     <li><strong>Built with:</strong> Apple frameworks only — SwiftUI, SwiftData, WebKit, StoreKit 2, App Intents and, for Ask, Foundation Models; no third-party code. Mini-apps are served over a custom URL scheme whose handler is a static file server for one package directory, each app with its own origin; ZIP import inspects every entry before extracting and is bounded by absolute limits, never compression ratios.</li>
     <li><strong>App Store:</strong> <a href="https://apps.apple.com/app/id6805883209">apps.apple.com/app/id6805883209</a></li>
     <li><strong>Contact:</strong> <a href="mailto:mtomasgaard+snuggery@gmail.com">mtomasgaard+snuggery@gmail.com</a> — codes for the purchase on request.</li>
@@ -44,16 +44,31 @@
 <h2>Clips</h2>
 
 <p>Shown here as the plain recording. Each link downloads the framed, captioned version for
-posting: vertical, 1080×1920, H.264, no sound, the caption burned in. Recorded from the app on the
-simulator with its own examples; nothing retouched.</p>
+posting: vertical, 1080×1920, H.264, no sound, the caption burned in. Recorded by the developer on
+their own iPhone, and edited only for length, with a ring at each tap and a label on what the clip
+shows.</p>
 
 <ul class="gallery">
-    <li><video width="720" height="1564" aria-label="Clip: Besseggen running in Snuggery — the ridge in 3D, the view from the lake, the walk along the trail, focus mode" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/besseggen.jpg" src="../media/clips/plain/besseggen.mp4"></video><p><a href="../media/clips/besseggen.mp4">besseggen.mp4</a> — a mountain in 3D from open map data</p></li>
-    <li><video width="720" height="1564" aria-label="Clip: Norne Reservoir running in Snuggery — the reservoir grid, the field rising out of the sea around it, the flow animation, the map of where the gas goes" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/norne.jpg" src="../media/clips/plain/norne.mp4"></video><p><a href="../media/clips/norne.mp4">norne.mp4</a> — an oil field's reservoir and platform from open data</p></li>
-    <li><video width="720" height="1564" aria-label="Clip: Milky Way running in Snuggery — the planets with time running, the Sun's neighbourhood, the whole galaxy" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/milky-way.jpg" src="../media/clips/plain/milky-way.mp4"></video><p><a href="../media/clips/milky-way.mp4">milky-way.mp4</a> — from the planets to the galaxy, from real data</p></li>
-    <li><video width="720" height="1564" aria-label="Clip: Anatomy running in Snuggery — the body, the skin peeled, the parts pulled apart, a slow turn" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/anatomy.jpg" src="../media/clips/plain/anatomy.mp4"></video><p><a href="../media/clips/anatomy.mp4">anatomy.mp4</a> — 934 anatomical structures on a phone</p></li>
-    <li><video width="720" height="1564" aria-label="Clip: Running Dashboard inside Snuggery, its menu, and the Keep This Up To Date screen that explains the Shortcut loop" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/the-loop.jpg" src="../media/clips/plain/the-loop.mp4"></video><p><a href="../media/clips/the-loop.mp4">the-loop.mp4</a> — a dashboard that refreshes itself every morning</p></li>
-    <li><video width="720" height="1564" aria-label="Clip: Ask in Snuggery — a question typed about a mini-app's data, answered on the phone" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/ask.jpg" src="../media/clips/plain/ask.mp4"></video><p><a href="../media/clips/ask.mp4">ask.mp4</a> — a question about your own file, answered on the phone</p></li>
+    <li><video width="720" height="1566" aria-label="Clip: Byggeprosjekt in Snuggery, recorded on an iPhone — a real window-bench planner its owner asked an AI for, in Norwegian" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/byggeprosjekt.jpg" src="../media/clips/plain/byggeprosjekt.mp4"></video><p><a href="../media/clips/byggeprosjekt.mp4">byggeprosjekt.mp4</a> — a real tool, in Norwegian: the planner for the developer's own window bench</p></li>
+    <li><video width="720" height="1566" aria-label="Clip: the developer's own Training Load dashboard inside Snuggery, recorded on an iPhone — Rebuild Data Now runs a Shortcut, the heart-rate data refreshes, the Updated stamp changes" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/the-loop.jpg" src="../media/clips/plain/the-loop.mp4"></video><p><a href="../media/clips/the-loop.mp4">the-loop.mp4</a> — a real Garmin dashboard refreshed by a Shortcut; Snuggery itself never goes online</p></li>
+    <li><video width="720" height="1566" aria-label="Clip: Milky Way running in Snuggery, recorded on an iPhone — the planets with time running, the scale buttons, the flight out to the whole galaxy" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/milky-way.jpg" src="../media/clips/plain/milky-way.mp4"></video><p><a href="../media/clips/milky-way.mp4">milky-way.mp4</a> — from the planets to the galaxy, from real data</p></li>
+    <li><video width="720" height="1566" aria-label="Clip: Norne Reservoir running in Snuggery, recorded on an iPhone — the grid coloured by oil, water and pressure, the production history playing, the model exploded, a well's own sheet" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/norne.jpg" src="../media/clips/plain/norne.mp4"></video><p><a href="../media/clips/norne.mp4">norne.mp4</a> — an oil field's reservoir model, 44,431 cells through nine years of production</p></li>
+    <li><video width="720" height="1566" aria-label="Clip: Anatomy running in Snuggery, recorded on an iPhone — layers peeled and added, an organ's card, Focus, Isolate and X-ray, the Assemble slider" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/anatomy.jpg" src="../media/clips/plain/anatomy.mp4"></video><p><a href="../media/clips/anatomy.mp4">anatomy.mp4</a> — 934 anatomical structures on a phone</p></li>
+    <li><video width="720" height="1566" aria-label="Clip: Global Weather running in Snuggery, recorded on an iPhone — the map, the globe, temperature and wind, the five-day time player" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/global-weather.jpg" src="../media/clips/plain/global-weather.mp4"></video><p><a href="../media/clips/global-weather.mp4">global-weather.mp4</a> — five days of global weather on a map or a globe</p></li>
+    <li><video width="720" height="1566" aria-label="Clip: World Oil & Gas running in Snuggery, recorded on an iPhone — every country's production with the years scrubbed from 1900, then the North Sea's fields" class="clip" controls muted playsinline preload="none" poster="../media/clips/plain/world-oil-gas.jpg" src="../media/clips/plain/world-oil-gas.mp4"></video><p><a href="../media/clips/world-oil-gas.mp4">world-oil-gas.mp4</a> — every country's oil and gas since 1900, and the world's oil and gas fields</p></li>
+</ul>
+
+<h2>The examples, as pictures</h2>
+
+<p>Two full-screen panes of each showpiece, side by side, 1304×1391.</p>
+
+<ul class="downloads">
+    <li><a href="../media/composites/milky-way.jpg"><img loading="lazy" decoding="async" width="1304" height="1385" src="../media/composites/milky-way.jpg" alt="Milky Way: the Solar System and the galaxy"></a>Milky Way</li>
+    <li><a href="../media/composites/besseggen.jpg"><img loading="lazy" decoding="async" width="1304" height="1391" src="../media/composites/besseggen.jpg" alt="Besseggen: the ridge, and the view from the boat on Gjende"></a>Besseggen</li>
+    <li><a href="../media/composites/norne-reservoir.jpg"><img loading="lazy" decoding="async" width="1304" height="1391" src="../media/composites/norne-reservoir.jpg" alt="Norne Reservoir: the field by oil saturation and by pressure"></a>Norne Reservoir</li>
+    <li><a href="../media/composites/anatomy.jpg"><img loading="lazy" decoding="async" width="1304" height="1391" src="../media/composites/anatomy.jpg" alt="Anatomy: the body, and the body peeled"></a>Anatomy</li>
+    <li><a href="../media/composites/shelf-atlas.jpg"><img loading="lazy" decoding="async" width="1304" height="1391" src="../media/composites/shelf-atlas.jpg" alt="Shelf Atlas: the North Sea's fields and pipelines, and a month of production"></a>Shelf Atlas</li>
+    <li><a href="../media/composites/world-oil-gas.jpg"><img loading="lazy" decoding="async" width="1304" height="1391" src="../media/composites/world-oil-gas.jpg" alt="World Oil &amp; Gas: the world map with the year player, and the fields"></a>World Oil &amp; Gas</li>
 </ul>
 
 <h2>App Store screenshots (6.9", 1320×2868)</h2>
@@ -82,7 +97,7 @@ simulator with its own examples; nothing retouched.</p>
 
 <ul>
     <li><a href="../notes/besseggen/">Besseggen: a 3D mountain from Kartverket's open terrain</a></li>
-    <li><a href="../notes/norne/">Norne: an oil field's underground and its topside from open data</a></li>
+    <li><a href="../notes/norne/">Norne: an oil field's reservoir model from open data</a></li>
     <li><a href="../notes/milky-way/">Milky Way: the planets to the galaxy from JPL and Gaia</a></li>
     <li><a href="../notes/the-loop/">The loop: how a Garmin dashboard refreshes itself without a server</a></li>
 </ul>
