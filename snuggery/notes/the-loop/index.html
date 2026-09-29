@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The loop: how a Garmin dashboard refreshes itself without a server — Snuggery</title>
-<meta name="description" content="How a running dashboard on an iPhone refreshes itself every morning through a GitHub Action and a Shortcut, while the app that hosts it never goes online.">
+<meta name="description" content="How a Garmin dashboard on an iPhone refreshes itself: an hourly GitHub Action pulls the data, a daily scheduled Claude Code session writes the assessment and the plan, a Shortcut delivers the file — while the app that hosts it never goes online.">
 <link rel="stylesheet" href="../../style.css?v=20250925c">
 </head>
 <body>
@@ -22,7 +22,7 @@ Data Now</em> in the ⋯ menu runs the Shortcut; the heart-rate card refreshes w
 <em>Updated</em> stamp in the header changes. The Running Dashboard in the template is the same
 loop with made-up data, so you can try it without a Garmin account.</p>
 
-<p>My running dashboard refreshes itself every morning, and no server of mine is involved. Snuggery, the app it lives in, makes no network requests at all —
+<p>My Garmin dashboard refreshes itself every morning, and no server of mine is involved. Snuggery, the app it lives in, makes no network requests at all —
 that is a rule of the sandbox, not a setting. So how does a file on the phone come to hold last
 night's sleep and this morning's readiness?</p>
 
@@ -48,6 +48,22 @@ a Snuggery App</em>. The dashboard redraws in place, same tab, same scroll posit
 <p>Nothing in this chain is mine to run. GitHub runs the job on its free tier; the phone runs the
 Shortcut; the app accepts a file. Snuggery never fetches, and the token that lets the Shortcut read
 a private repository lives in the Shortcut, not in the app.</p>
+
+<h2>The version I run: a coach in the loop</h2>
+
+<p>The dashboard in the clip is the one I actually use, and its loop has one more part than the
+template's. Three jobs, deliberately separate, none of them on a machine of mine:</p>
+
+<ul>
+    <li><strong>Data.</strong> Every hour, cron-job.org starts a GitHub Action. A script signs in to Garmin Connect with stored tokens, fetches what is new — activities, laps and splits, the per-second streams, training load, sleep, the day's health readouts, weigh-ins, the race calendar — rebuilds the snapshot, pushes it, and leaves a receipt of when it ran and what worked.</li>
+    <li><strong>Reasoning.</strong> Once a day a scheduled Claude Code session reads what the pull left and writes the coaching text: an assessment of the last four weeks against the four before and the same weeks a year ago, a note on every new session, a nudge on the race forecast, and the week's plan. It reasons on top of Garmin's labels rather than restating them, says what the data cannot support, and on a quiet day changes only what today's readouts touch. It never calls Garmin while the data is fresh.</li>
+    <li><strong>Delivery.</strong> The Shortcut copies the snapshot into the app every morning, or when I press <em>Rebuild Data Now</em>. Snuggery draws the Now, Plan, Training, Health and Sessions panes from that one file, offline.</li>
+</ul>
+
+<p>Data and reasoning were one job until 11 September; splitting them made the pull cheap and
+hourly and the agent's run small and daily. The agent's procedure is a document in the repository
+rather than a line in a schedule, so it can be corrected without touching the schedule, and a
+person can run it by hand if the schedule stops.</p>
 
 <h2>What is in the template</h2>
 
