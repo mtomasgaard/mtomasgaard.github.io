@@ -1,0 +1,78 @@
+name: Fishing forecast
+
+# Writes fishing/forecast.json and fishing/fields/ for the Fishing Window mini-app: point forecasts
+# for the spots in the FISHING_SPOTS secret (a JSON list of {id, lat, lon}) and gridded wind,
+# current and waves for the two home regions. The spots' coordinates live only in that secret and
+# in the private app repository; the output names each spot by its opaque id and nothing else, and
+# the job prints no request address. Sources and terms: fishing/README.md.
+#
+# Cadence: every hour at :20 from 03:20 to 20:20 UTC (05:20 to 22:20 in Norwegian summer time,
+# 04:20 to 21:20 in winter). MET's point forecasts change about once an hour, the fields with each
+# model run (MEPS every 3 h, the wave model 4 times a day, NorKyst once a day), and nobody plans a
+# trip from a forecast fetched at 03:00, so the night is skipped. Requests carry If-Modified-Since
+# and respect Expires through a cache kept between runs (actions/cache, never committed). A run
+# that changes nothing commits nothing, and one that does makes one commit, so GitHub Pages builds
+# at most once an hour for this, far inside its limit of 10 builds an hour.
+
+on:
+  schedule:
+    - cron: '20 3-20 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: fishing-forecast
+  cancel-in-progress: false
+
+jobs:
+  forecast:
+    runs-on: ubuntu-24.04   # pinned: ubuntu-latest moves to a new release; move on purpose, after a test run
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Restore the request cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.fishing-cache
+          key: fishing-cache-${{ github.run_id }}
+          restore-keys: fishing-cache-
+
+      - name: Test the indicator maths
+        run: python3 -m unittest discover -s fishing/job
+
+      - name: Fetch, compute and write
+        env:
+          FISHING_SPOTS: ${{ secrets.FISHING_SPOTS }}
+        run: python3 fishing/job/forecast.py
+
+      - name: Commit if anything changed
+        id: commit
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A fishing/forecast.json fishing/fields
+          if git diff --staged --quiet; then
+            echo "nothing changed"
+            echo "pushed=no" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -q -m "Fishing forecast $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3 4; do
+            if git push -q origin "HEAD:${GITHUB_REF_NAME}"; then echo "pushed=yes" >> "$GITHUB_OUTPUT"; exit 0; fi
+            sleep $((2 ** i))
+            git pull -q --rebase -X theirs origin "${GITHUB_REF_NAME}" || { git rebase --abort || true; exit 1; }
+          done
+          exit 1
+
+      # A push made with this workflow's token does not always start the Pages build of a branch
+      # site; ask for one, so the new forecast is served within minutes.
+      - name: Ask Pages to build
+        if: steps.commit.outputs.pushed == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" --silent || echo "Pages build request refused; the push starts one on its own"
