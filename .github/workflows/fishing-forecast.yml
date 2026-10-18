@@ -12,7 +12,8 @@ name: Fishing forecast
 # trip from a forecast fetched at 03:00, so the night is skipped. Requests carry If-Modified-Since
 # and respect Expires through a cache kept between runs (actions/cache, never committed). A run
 # that changes nothing commits nothing, and one that does makes one commit, so GitHub Pages builds
-# at most once an hour for this, far inside its limit of 10 builds an hour.
+# at most once an hour for this, far inside its limit of 10 builds an hour. (The push starts the
+# branch site's Pages build by itself: measured on the first run, 2026-10-18.)
 
 on:
   schedule:
@@ -21,7 +22,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
 
 concurrency:
   group: fishing-forecast
@@ -68,11 +68,3 @@ jobs:
             git pull -q --rebase -X theirs origin "${GITHUB_REF_NAME}" || { git rebase --abort || true; exit 1; }
           done
           exit 1
-
-      # A push made with this workflow's token does not always start the Pages build of a branch
-      # site; ask for one, so the new forecast is served within minutes.
-      - name: Ask Pages to build
-        if: steps.commit.outputs.pushed == 'yes'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" --silent || echo "Pages build request refused; the push starts one on its own"
