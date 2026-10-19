@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Snuggery: Mini-Apps — Privacy Policy</title>
-<meta name="description" content="Snuggery collects nothing. No servers, no accounts, no analytics. Everything stays on your device.">
+<meta name="description" content="Snuggery collects nothing: no servers, no accounts, no analytics. It is offline by default, and goes online only for connections you set up.">
 <link rel="stylesheet" href="../style.css?v=20250929">
 </head>
 <body>
@@ -15,15 +15,17 @@
     <p class="tagline">Snuggery: Mini-Apps, for iPhone</p>
 </header>
 
-<p class="updated">Last updated: 29 August 2026</p>
+<p class="updated">Last updated: 19 October 2026</p>
 
 <div class="card">
-    <p><strong>Snuggery does not collect, transmit, or store any personal data.</strong></p>
+    <p><strong>Snuggery does not collect any personal data. Nothing you do in it is sent to its
+    developer.</strong></p>
 </div>
 
 <p>Everything you import into Snuggery — your files, your folders, and the mini-apps you run —
-stays on your device. Snuggery has no servers, no account system, and no analytics. Nothing you
-put in the app is sent anywhere.</p>
+stays on your device. Snuggery has no servers, no account system, and no analytics. It is offline
+by default: it goes online only for a connection you set up yourself, described under
+<a href="#network">Network</a>, and never uploads your files.</p>
 
 <h2>Mini-apps</h2>
 
@@ -36,18 +38,80 @@ your library.</p>
 <p>Purchases are handled entirely by Apple. Snuggery receives only whether a purchase was made;
 it never sees your payment details, and it has no way to identify you.</p>
 
-<h2>Network</h2>
+<h2 id="network">Network</h2>
 
-<p>Snuggery works fully offline and makes no network requests of its own. Its <em>Keep This Up To
-Date</em> screen can open Apple's Shortcuts app on a shortcut you named there; anything that
-shortcut fetches, Shortcuts fetches with your own accounts. Snuggery only opens it and gets nothing
-back, and mini-apps cannot open it at all. Its <em>Every example, ready to download</em> row opens
-the examples page in Safari's own sheet: Safari loads the page, as it would in its own app, and
-Snuggery sees nothing of it but a ZIP you choose to open in Snuggery.</p>
+<p><strong>Offline by default.</strong> Until you set up a connection, Snuggery makes no network
+requests of its own.</p>
 
-<p>The <em>Ask</em> button, on iPhones with Apple Intelligence, answers questions about your files
-with Apple's on-device model. The text it reads and the answer it gives stay on your iPhone;
-nothing is sent anywhere, and Snuggery keeps no record of your questions.</p>
+<p><strong>Connections you set up.</strong> A mini-app's <em>Keep This Up To Date</em> screen can
+take a web address for that app's data file. Nothing is fetched until you approve the address. The
+approval shows the site's address and tells you that the site sees each time you open the app. After
+that, Snuggery fetches from that address, and only that address:</p>
+<ul>
+    <li>when you open the app, when you come back to it, and when you tap <em>Get New
+    Data</em>;</li>
+    <li>in the background, now and then when iOS allows, but only for an app you turned that on
+    for;</li>
+    <li>when a Shortcuts automation of yours runs <em>Refresh a Snuggery App</em>, again only for an
+    app you turned background refresh on for.</li>
+</ul>
+<p>Every connection is listed on Snuggery's Connections screen, and you can remove any of them
+there.</p>
+
+<p><strong>What is sent.</strong> An ordinary HTTPS request for the address you gave. The site sees
+what any website sees: your IP address, the time, and that the request came from Snuggery and which version of it. If you
+added a key (a GitHub sign-in, or a token you pasted), it is sent only to that site, and only for
+addresses inside the repository or folder you chose. When you start a job from Snuggery, the site
+receives only what you set up for that job. Snuggery sends no cookies and nothing from your library.
+Only a successful answer is saved, and only into that app's data file.</p>
+
+<p><strong>GitHub.</strong> Signing in to GitHub is optional. If you do, you sign in on GitHub's own
+page, and you install Snuggery's GitHub App only on the repositories you choose. Snuggery then
+contacts <code>github.com</code> and <code>api.github.com</code> to keep the sign-in current, to
+read the files you connected, to list the folders and files of a repository you chose when you use
+<em>Choose from GitHub…</em>, and its workflows when you set up <em>Rebuild Data</em>, and, when you
+ask it to rebuild an app's data, to start the workflow you chose and follow it until it finishes,
+then fetch the new data. Snuggery never asks you to enter a code someone else sent you. One sign-in
+covers every app whose address is inside a repository you installed Snuggery's GitHub App on.</p>
+
+<p><strong>Keys stay on this iPhone.</strong> Sign-ins and tokens are kept in the iPhone's
+Keychain, on this device only. They are not synced to iCloud, not included in Snuggery's backups,
+and never sent anywhere but the site they belong to. A Snuggery backup carries a connection's name
+and address without its key, and a restored connection does nothing until you confirm it
+again, and uses your GitHub sign-in only if you turn that on when you confirm.</p>
+
+<p><strong>Disconnect.</strong> Removing a connection, or disconnecting a sign-in, forgets the key on
+this iPhone at once, whether or not you have bought Snuggery. It cannot cancel the key at GitHub
+itself, so Snuggery links you to the GitHub page where you can.</p>
+
+<p><strong>Nothing goes to the developer.</strong> Every request goes from your iPhone straight to a
+site you named. Snuggery has no server to send anything to, and its developer never sees your
+addresses, your keys or your data. One thing GitHub itself records: Snuggery's GitHub App is
+registered by its developer, and GitHub shows an App's owner which accounts installed it and on
+which repositories. The developer keeps the App's key offline and never uses it to read anything.
+iOS's App Privacy Report (Settings → Privacy &amp; Security)
+lists the sites Snuggery contacted, so you can check them against your connections.</p>
+
+<p><strong>Shortcuts and the examples page.</strong> <em>Keep This Up To Date</em> can also open
+Apple's Shortcuts app on a shortcut you named there. Anything that shortcut fetches, Shortcuts
+fetches with your own accounts; Snuggery only opens it and gets nothing back, and mini-apps cannot
+open it at all. The <em>Every example, ready to download</em> row opens the examples page in
+Safari's own sheet: Safari loads the page, as it would in its own app, and Snuggery sees nothing of
+it but a ZIP you choose to open in Snuggery.</p>
+
+<p><strong>Notifications.</strong> If you turn on <em>Notifications</em> for an app on its
+<em>Keep This Up To Date</em> screen, Snuggery shows the alerts that app's own data file lists, as
+notifications on this iPhone. They are local notifications: Snuggery reads them from data already on
+your iPhone and posts them itself. Nothing is sent anywhere to make them, there is no push server,
+and the app's own code has no part in it. It is off for every app until you turn it on, and a
+restored backup turns it off again. Like any app's notifications, they can show on the lock screen
+and on a paired Apple Watch, with as much of their text as iOS's own notification preview settings
+allow.</p>
+
+<p><em>Ask</em>, in the ⋯ menu on iPhones with Apple Intelligence, answers questions about a file, a
+folder, an app or your whole Library with Apple's on-device model. The text it reads and the answer
+it gives stay on your iPhone; nothing is sent anywhere, and Snuggery keeps no record of your
+questions.</p>
 
 <h2>Children</h2>
 

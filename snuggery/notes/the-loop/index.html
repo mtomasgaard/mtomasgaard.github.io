@@ -22,8 +22,8 @@ Data Now</em> in the ⋯ menu runs the Shortcut; the heart-rate card refreshes w
 <em>Updated</em> stamp in the header changes. The Running Dashboard in the template is the same
 loop with made-up data, so you can try it without a Garmin account.</p>
 
-<p>My Garmin dashboard refreshes itself every morning, and no server of mine is involved. Snuggery, the app it lives in, makes no network requests at all —
-that is a rule of the sandbox, not a setting. So how does a file on the phone come to hold last
+<p>My Garmin dashboard refreshes itself every morning, and no server of mine is involved. Snuggery, the app it lives in, is offline by default and makes a network request only for a connection I set up myself —
+the mini-app itself can reach nothing, which is a rule of its sandbox, not a setting. So how does a file on the phone come to hold last
 night's sleep and this morning's readiness?</p>
 
 <figure>
@@ -42,11 +42,11 @@ it in place — Snuggery has a control for that — but that is rare.</p>
 to Garmin Connect with my own account, fetches what is new, and rebuilds that one JSON file in a
 repository. Then a Shortcut on the phone does the only thing that has to happen on the phone: it
 fetches the file and hands it to the app through an action Snuggery provides, <em>Update a File in
-a Snuggery App</em>. The dashboard redraws in place, same tab, same scroll position. There is also a
-<em>Rebuild Data Now</em> button in the app's menu that runs the shortcut on demand.</p>
+a Snuggery App</em>. The dashboard redraws in place, same tab, same scroll position. There is also
+<em>Rebuild Data</em> under the app's ↻ button, which runs the shortcut on demand.</p>
 
 <p>Nothing in this chain is mine to run. GitHub runs the job on its free tier; the phone runs the
-Shortcut; the app accepts a file. Snuggery never fetches, and the token that lets the Shortcut read
+Shortcut; the app accepts a file. In this setup Snuggery fetches nothing, and the token that lets the Shortcut read
 a private repository lives in the Shortcut, not in the app.</p>
 
 <h2>The version I run: a coach in the loop</h2>
@@ -57,7 +57,7 @@ template's. Three jobs, deliberately separate, none of them on a machine of mine
 <ul>
     <li><strong>Data.</strong> Every hour, cron-job.org starts a GitHub Action. A script signs in to Garmin Connect with stored tokens, fetches what is new — activities, laps and splits, the per-second streams, training load, sleep, the day's health readouts, weigh-ins, the race calendar — rebuilds the snapshot, pushes it, and leaves a receipt of when it ran and what worked.</li>
     <li><strong>Reasoning.</strong> Once a day a scheduled Claude Code session reads what the pull left and writes the coaching text: an assessment of the last four weeks against the four before and the same weeks a year ago, a note on every new session, a nudge on the race forecast, and the week's plan. It reasons on top of Garmin's labels rather than restating them, says what the data cannot support, and on a quiet day changes only what today's readouts touch. It never calls Garmin while the data is fresh.</li>
-    <li><strong>Delivery.</strong> The Shortcut copies the snapshot into the app every morning, or when I press <em>Rebuild Data Now</em>. Snuggery draws the Now, Plan, Training, Health and Sessions panes from that one file, offline.</li>
+    <li><strong>Delivery.</strong> The Shortcut copies the snapshot into the app every morning, or when I press <em>Rebuild Data</em>. Snuggery draws the Now, Plan, Training, Health and Sessions panes from that one file, offline.</li>
 </ul>
 
 <p>Data and reasoning were one job until 11 September; splitting them made the pull cheap and

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Snuggery: Mini-Apps — Support</title>
-<meta name="description" content="Help for Snuggery, the private offline home for the mini-apps and files you make with AI.">
+<meta name="description" content="Help for Snuggery, the private home for the mini-apps and files you make with AI. Offline by default.">
 <link rel="stylesheet" href="../style.css?v=20250929">
 </head>
 <body>
@@ -15,8 +15,9 @@
     <p class="tagline">Snuggery: Mini-Apps, for iPhone</p>
 </header>
 
-<p>Snuggery is a private, offline home for the mini-apps and files you make with AI. Everything
-stays on your device — there is no account to lose access to and no server to be down.</p>
+<p>Snuggery is a private home for the mini-apps and files you make with AI. It is offline by default
+and goes online only where you choose. Your files stay on your device — there is no account to lose
+access to and no server to be down.</p>
 
 <h2>Get in touch</h2>
 
@@ -91,6 +92,36 @@ mini-apps saved — and a backup made on iOS&nbsp;26 cannot put that data back o
 either, though the files still come back. It never carries data an app kept in IndexedDB rather
 than local storage. Snuggery tells you which of those applies, both when you make a backup and
 before you restore one.</p>
+
+<h3>Does Snuggery go online?</h3>
+<p>Only where you choose. Until you set up a connection, Snuggery makes no network requests of its
+own. A connection is a web address you give a mini-app, on its <em>Keep This Up To Date</em> screen,
+so that it can fetch its own data file when you open the app, when you come back to it, and from the
+↻ button's <em>Get New Data</em>. You can also sign in to GitHub to reach a private repository of
+yours. One sign-in covers all your apps, and <em>Choose from GitHub…</em> helps you find the data
+file. Each connection is approved once, listed on the Connections screen, and can
+be removed there at any time. Mini-apps themselves never reach the internet. The
+<a href="../privacy/#network">privacy policy</a> says exactly what is sent, and to whom.</p>
+<p><strong>Snuggery never asks you to enter a code someone else sent you.</strong> Signing in to
+GitHub shows a short code in Snuggery for you to type on GitHub's own page. If a code reaches you
+by message, email or a call, it is someone else's sign-in: don't enter it.</p>
+
+<h3>How do I refresh an app?</h3>
+<p>The ↻ button in an app's toolbar has <em>Reload</em> (start the app again from its files),
+<em>Get New Data</em> (when the app has a data address) and <em>Rebuild Data</em> (when you set up a
+GitHub job or a shortcut to rebuild it). For a GitHub job, <em>Rebuild Data</em> runs it, waits for
+it to finish, then fetches the result; for a shortcut, it opens Shortcuts to run the one you set
+up.</p>
+
+<h3>Why won't a work file open?</h3>
+<p>If your organization protects its files with Microsoft Intune app protection, a file saved from
+its apps is encrypted, and only your organization's apps can open it. Snuggery says so rather than
+showing the scrambled bytes. Save the file from an app that isn't managed, or ask your IT team.</p>
+
+<h3>Can an app send me notifications?</h3>
+<p>Only if you turn on <em>Notifications</em> for it on its <em>Keep This Up To Date</em> screen.
+Snuggery then shows the alerts listed in that app's own data file, a few at most each day, with the
+app's name on each. Restoring a backup turns them off again.</p>
 
 <h3>Do I need a subscription?</h3>
 <p>No. Snuggery is one payment, once. You get the complete app free for seven days first, and when
