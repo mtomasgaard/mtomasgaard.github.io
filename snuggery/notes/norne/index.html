@@ -15,9 +15,9 @@
     <p class="tagline">One of the example apps. Built by asking an AI; runs offline in Snuggery.</p>
 </header>
 
-<video width="720" height="1566" aria-label="Clip: Norne Reservoir running in Snuggery, recorded on an iPhone — the grid coloured by oil, water and pressure, the production history playing, the model exploded, a well's own sheet" class="clip" controls muted playsinline preload="none" poster="../../media/clips/plain/norne.jpg" src="../../media/clips/plain/norne.mp4"></video>
+<video width="720" height="1566" aria-label="Clip: Norne Reservoir running in Snuggery, recorded on an iPhone — the grid colored by oil, water and pressure, the production history playing, the model exploded, a well's own sheet" class="clip" controls muted playsinline preload="none" poster="../../media/clips/plain/norne.jpg" src="../../media/clips/plain/norne.mp4"></video>
 
-<p>Norne is an oil field in the Norwegian Sea, and it is also the reservoir engineer's favourite
+<p>Norne is an oil field in the Norwegian Sea, and it is also the reservoir engineer's favorite
 open dataset: Equinor and the field's partners released the full simulation model through the Open
 Porous Media initiative, so anyone can run the same deck the industry runs. I wanted it on a phone
 — the rock, and the fluids moving through it across nine years of production, with the wells that
@@ -35,20 +35,20 @@ so.</p>
 <h2>What is in it</h2>
 
 <ul>
-    <li>The 44,431-cell corner-point grid, coloured by oil, water or gas saturation, pressure, porosity, permeability, net-to-gross, depth, formation, region or layer.</li>
+    <li>The 44,431-cell corner-point grid, colored by oil, water or gas saturation, pressure, porosity, permeability, net-to-gross, depth, formation, region or layer.</li>
     <li>The production history from November 1997 to December 2006, in 110 monthly frames, with a player.</li>
-    <li>The 36 wells, coloured by what each is doing on that date: producing, injecting water, injecting gas, shut. A well stays hidden until the date it was first opened.</li>
+    <li>The 36 wells, colored by what each is doing on that date: producing, injecting water, injecting gas, shut. A well stays hidden until the date it was first opened.</li>
     <li>Explode the model by formation — Garn, Ile, Tofte, Tilje — by layer or by segment; cut it by I, J and K; filter cells by value; tap a cell for its numbers, double-tap to fly to it.</li>
     <li>Charts of field or per-well oil, water and gas rates, with a cursor at the current date.</li>
 </ul>
 
 <p>Nothing above the reservoir is drawn. It is a reservoir viewer and only that: the grid, the
-fluids, the wells and their rates, at true depth — the top of the model sits 2,439 metres down,
+fluids, the wells and their rates, at true depth — the top of the model sits 2,439 meters down,
 its base at 3,090 — with a vertical exaggeration you can set.</p>
 
 <figure>
-    <img loading="lazy" decoding="async" width="1304" height="1391" src="../../media/composites/norne-reservoir.jpg" alt="Norne Reservoir: the whole field coloured by oil saturation, and the same field coloured by pressure">
-    <figcaption>The whole field as the app frames it, coloured by oil saturation, and the same field by pressure.</figcaption>
+    <img loading="lazy" decoding="async" width="1304" height="1391" src="../../media/composites/norne-reservoir.jpg" alt="Norne Reservoir: the whole field colored by oil saturation, and the same field colored by pressure">
+    <figcaption>The whole field as the app frames it, colored by oil saturation, and the same field by pressure.</figcaption>
 </figure>
 
 <h2>How it was built</h2>
@@ -57,14 +57,14 @@ its base at 3,090 — with a vertical exaggeration you can set.</p>
 downloads the deck at a pinned commit, runs the simulation — eight to ten minutes on one core —
 checks it against the Eclipse reference and refuses to publish if any cumulative differs by more
 than one percent, then writes the binary files the app reads. The OPM packages only exist for Linux,
-so on a Mac the pipeline runs as a GitHub Actions workflow and the artefact is downloaded; extracting
+so on a Mac the pipeline runs as a GitHub Actions workflow and the artifact is downloaded; extracting
 from the original run reproduces the committed files byte for byte. The app itself re-reads its
-settings file whenever it regains focus, so the colour maps, the formations and the playback speed
+settings file whenever it regains focus, so the color maps, the formations and the playback speed
 are yours to change without touching the code.</p>
 
 <p class="facts"><strong>Source:</strong> the Norne benchmark case, published by Equinor and the Norne
 partners through NTNU and the Open Porous Media initiative (ODbL); the derived data keeps that
-licence. Listed in full in the app's About and in
+license. Listed in full in the app's About and in
 <a href="https://github.com/mtomasgaard/snuggery-apps-template/blob/main/norne-reservoir/data/ATTRIBUTION.txt">ATTRIBUTION.txt</a>.</p>
 
 <p><a href="https://mtomasgaard.github.io/snuggery-apps-template/norne-reservoir/">Open it in your browser</a>

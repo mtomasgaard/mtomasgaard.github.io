@@ -42,13 +42,16 @@ design. Ask your AI to rebuild it with everything included in the ZIP and no ext
 
 <h3>My ZIP was refused</h3>
 <p>Snuggery inspects an archive before extracting anything, and refuses structures that are unsafe
-or unreasonably large. The message tells you which check failed. Most often the fix is to re-export
-it as a plain ZIP with the app's files at the top level, rather than a folder inside a folder.</p>
+or unreasonably large. The message tells you which check failed. Most often the fix is to ask your
+AI for a plain ZIP of the app's files. (One folder wrapping everything is fine; a ZIP with no
+<code>index.html</code> at its top level is not refused, but comes in as a folder, and the message
+names the file to move.)</p>
 
 <h3>Can I edit the data my apps use?</h3>
 <p>Yes — that is the point. Open a mini-app, tap <strong>⋯</strong>, then <strong>App Files</strong>.
 Edit a <code>.csv</code> or <code>.json</code> file there and the app shows your change the next
-time it reads it. Try it with Run Tracker's <code>runs.csv</code>.</p>
+time it reads it. Try it with Run Tracker's <code>runs.csv</code>. If Snuggery fetches that file
+from a connection, its next fetch replaces your edit.</p>
 
 <h3>How do I get my work out?</h3>
 <p>Any item can be exported as a ZIP at any time, whether or not you have bought Snuggery:
@@ -58,8 +61,8 @@ to bring it back — use <strong>Settings → Backup</strong> instead; see “I 
 
 <h3>My AI gave me a new version of a mini-app — how do I update it?</h3>
 <p>Touch and hold the app's row in the Library and choose <strong>Replace with a ZIP</strong>,
-then pick the new ZIP. Snuggery asks whether to <strong>keep saved data</strong> or
-<strong>start fresh</strong>: keeping it means the new version opens with everything the old one
+then pick the new ZIP. Snuggery asks whether to <strong>Keep Saved Data</strong> or
+<strong>Start Fresh</strong>: keeping it means the new version opens with everything the old one
 had stored — a tracker's entries, its settings — because the app itself is the same item, only its
 code changed.</p>
 <p>Importing the new ZIP instead makes a <em>second</em> app beside the first, and it starts empty:
@@ -75,12 +78,16 @@ what each mini-app has saved. Keep it somewhere other than the phone. On the new
 <strong>Settings → Restore from a Backup</strong> puts it all back; the Library's empty screen
 offers the same thing. Restoring replaces whatever is in the library at the time, and it tells
 you what the backup holds before it does.</p>
+<p>A backup carries each connection's address, never its key. After a restore, Snuggery fetches
+nothing for an app until you confirm its connection on that app's <em>Keep This Up To Date</em>
+screen; background refresh and notifications are off again, and a <em>Rebuild Data</em> job comes
+back by name only, to set up again. On a new phone, sign in to GitHub again first.</p>
 <p>Your files and folders also travel with an encrypted device backup or a direct
 device-to-device transfer. The records a mini-app keeps for itself (a tracker's entries, say)
 are stored by iOS's web engine, which only adds them to a device backup once you have reopened
 that mini-app a day or more after first using it — which is the gap Snuggery's own backup
 closes.</p>
-<p>Snuggery will put one quiet line in your Library if it has been more than a fortnight
+<p>Snuggery will put one quiet line in your Library if it has been more than two weeks
 since your last backup <em>and</em> something has changed since then — never a notification,
 never a badge, and <strong>Settings → Remind Me to Back Up</strong> turns it off for good.</p>
 <p>Backups are named <strong>“Snuggery Backup” and the date</strong>, so they sort by age
@@ -96,10 +103,12 @@ before you restore one.</p>
 <h3>Does Snuggery go online?</h3>
 <p>Only where you choose. Until you set up a connection, Snuggery makes no network requests of its
 own. A connection is a web address you give a mini-app, on its <em>Keep This Up To Date</em> screen,
-so that it can fetch its own data file when you open the app, when you come back to it, and from the
-↻ button's <em>Get New Data</em>. You can also sign in to GitHub to reach a private repository of
+so that Snuggery can fetch that app's data file when you open the app, when you come back to it,
+and from the ↻ button's <em>Get New Data</em> — and, only for an app you turn it on for, now and
+then in the background and when a Shortcuts automation of yours runs <em>Refresh a Snuggery
+App</em>. You can also sign in to GitHub to reach a private repository of
 yours. One sign-in covers all your apps, and <em>Choose from GitHub…</em> helps you find the data
-file. Each connection is approved once, listed on the Connections screen, and can
+file. Each connection is approved once, listed under <strong>Settings → Connections</strong>, and can
 be removed there at any time. Mini-apps themselves never reach the internet. The
 <a href="../privacy/#network">privacy policy</a> says exactly what is sent, and to whom.</p>
 <p><strong>Snuggery never asks you to enter a code someone else sent you.</strong> Signing in to
@@ -109,9 +118,10 @@ by message, email or a call, it is someone else's sign-in: don't enter it.</p>
 <h3>How do I refresh an app?</h3>
 <p>The ↻ button in an app's toolbar has <em>Reload</em> (start the app again from its files),
 <em>Get New Data</em> (when the app has a data address) and <em>Rebuild Data</em> (when you set up a
-GitHub job or a shortcut to rebuild it). For a GitHub job, <em>Rebuild Data</em> runs it, waits for
-it to finish, then fetches the result; for a shortcut, it opens Shortcuts to run the one you set
-up.</p>
+GitHub workflow, a web address that starts your job, or a shortcut to rebuild it). For a GitHub
+workflow, <em>Rebuild Data</em> runs it, waits for it to finish, then fetches the result; for a web
+address, it sends the request, and you tap <em>Get New Data</em> once the job is done; for a
+shortcut, it opens Shortcuts to run the one you set up.</p>
 
 <h3>Why won't a work file open?</h3>
 <p>If your organization protects its files with Microsoft Intune app protection, a file saved from
@@ -120,12 +130,14 @@ showing the scrambled bytes. Save the file from an app that isn't managed, or as
 
 <h3>Can an app send me notifications?</h3>
 <p>Only if you turn on <em>Notifications</em> for it on its <em>Keep This Up To Date</em> screen.
-Snuggery then shows the alerts listed in that app's own data file, a few at most each day, with the
-app's name on each. Restoring a backup turns them off again.</p>
+Snuggery then shows the alerts listed in that app's own data file, at most three at once and six a
+day, with the app's name on each. Restoring a backup turns them off again.</p>
 
 <h3>Do I need a subscription?</h3>
 <p>No. Snuggery is one payment, once. You get the complete app free for seven days first, and when
-the trial ends, everything already in your library stays openable and exportable.</p>
+the trial ends, everything already in your library stays openable and exportable. Adding new
+things, Ask, and fetching new data for your apps then need the purchase; removing a connection never
+does.</p>
 
 <h3>Does Snuggery build the apps for me?</h3>
 <p>No. Snuggery writes a prompt you paste into your own AI — Claude, ChatGPT, or any other — and

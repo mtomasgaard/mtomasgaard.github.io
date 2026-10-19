@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The loop: how a Garmin dashboard refreshes itself without a server — Snuggery: Mini-Apps</title>
-<meta name="description" content="How a Garmin dashboard on an iPhone refreshes itself: an hourly GitHub Action pulls the data, a daily scheduled Claude Code session writes the assessment and the plan, a Shortcut delivers the file — while the app that hosts it never goes online.">
+<meta name="description" content="How a Garmin dashboard on an iPhone refreshes itself: an hourly GitHub Action pulls the data, a daily scheduled Claude Code session writes the assessment and the plan, a Shortcut delivers the file — while the dashboard itself never goes online.">
 <link rel="stylesheet" href="../../style.css?v=20250929">
 </head>
 <body>
@@ -15,11 +15,12 @@
     <p class="tagline">The live examples, and the two hops that keep them live.</p>
 </header>
 
-<video width="720" height="1566" aria-label="Clip: the developer's own Training Load dashboard inside Snuggery, recorded on an iPhone — Rebuild Data Now in the menu runs a Shortcut, the heart-rate data refreshes in the background, the Updated time stamp changes" class="clip" controls muted playsinline preload="none" poster="../../media/clips/plain/the-loop.jpg" src="../../media/clips/plain/the-loop.mp4"></video>
+<video width="720" height="1566" aria-label="Clip: the developer's own Training Load dashboard inside Snuggery, recorded on an iPhone in Snuggery 1.1 — Rebuild Data Now in the menu runs a Shortcut, the heart-rate data refreshes in the background, the Updated time stamp changes" class="clip" controls muted playsinline preload="none" poster="../../media/clips/plain/the-loop.jpg" src="../../media/clips/plain/the-loop.mp4"></video>
 
-<p>The clip is my own dashboard, with my own data — the thing the loop was built for. <em>Rebuild
-Data Now</em> in the ⋯ menu runs the Shortcut; the heart-rate card refreshes while I watch, and the
-<em>Updated</em> stamp in the header changes. The Running Dashboard in the template is the same
+<p>The clip is my own dashboard, with my own data — the thing the loop was built for — recorded
+in Snuggery 1.1. <em>Rebuild Data Now</em> in the ⋯ menu (since 1.3, <em>Rebuild Data</em> under ↻)
+runs the Shortcut; the heart-rate card refreshes while I watch, and the <em>Updated</em> stamp in
+the header changes. The Running Dashboard in the template is the same
 loop with made-up data, so you can try it without a Garmin account.</p>
 
 <p>My Garmin dashboard refreshes itself every morning, and no server of mine is involved. Snuggery, the app it lives in, is offline by default and makes a network request only for a connection I set up myself —
@@ -40,7 +41,7 @@ it in place — Snuggery has a control for that — but that is rare.</p>
 
 <p><strong>The data hop happens on a schedule.</strong> A GitHub Action runs a script that signs in
 to Garmin Connect with my own account, fetches what is new, and rebuilds that one JSON file in a
-repository. Then a Shortcut on the phone does the only thing that has to happen on the phone: it
+repository. Then, in my setup, a Shortcut on the phone does the only thing that has to happen on the phone: it
 fetches the file and hands it to the app through an action Snuggery provides, <em>Update a File in
 a Snuggery App</em>. The dashboard redraws in place, same tab, same scroll position. There is also
 <em>Rebuild Data</em> under the app's ↻ button, which runs the shortcut on demand.</p>
@@ -60,7 +61,7 @@ template's. Three jobs, deliberately separate, none of them on a machine of mine
     <li><strong>Delivery.</strong> The Shortcut copies the snapshot into the app every morning, or when I press <em>Rebuild Data</em>. Snuggery draws the Now, Plan, Training, Health and Sessions panes from that one file, offline.</li>
 </ul>
 
-<p>Data and reasoning were one job until 11 September; splitting them made the pull cheap and
+<p>Data and reasoning were one job until September 11; splitting them made the pull cheap and
 hourly and the agent's run small and daily. The agent's procedure is a document in the repository
 rather than a line in a schedule, so it can be corrected without touching the schedule, and a
 person can run it by hand if the schedule stops.</p>
@@ -71,15 +72,16 @@ person can run it by hand if the schedule stops.</p>
 holds the whole loop for ten live apps: the workflow that fetches, the script that builds the
 snapshot, and — for the two that need credentials — a demo with made-up data so the app draws
 something before you connect anything. Seven of them — a clock, world headlines, tomorrow's electricity prices, global wind and
-weather, every US earthquake with the USGS feed, and NASA's temperature record — need no key and no account at all; they refresh from open sources from the moment you
+weather, US earthquakes with the USGS feed, and NASA's temperature record — need no key and no account at all; they refresh from open sources from the moment you
 install them. The Running Dashboard needs a Garmin sign-in and a copy of the template of your own,
 and its <em>PROMPT.md</em> walks an AI session through setting that up, including the one thing
 it must never do: put the sign-in tokens anywhere but the repository's secrets.</p>
 
-<p>Snuggery's own screen for this is called <em>Keep This Up To Date</em>. It explains the loop,
-offers the ready-made shortcut to add with one tap, and shows the row to fill in for each app. The
-Create tab's prompt teaches the same shape to whatever AI writes your next app, so a new dashboard
-is one more row in the shortcut, not a new setup.</p>
+<p>Snuggery's own screen for this is called <em>Keep This Up To Date</em>. Since 1.3 it takes the
+address an app's data is published at, and Snuggery fetches it itself; under <em>Use Shortcuts
+instead</em> it still offers the ready-made shortcut to add with one tap, and the row to fill in for
+each app. The Create tab's prompt teaches both ways to whatever AI writes your next app, so a new
+dashboard is one more address, or one more row in the shortcut, not a new setup.</p>
 
 <h2>Two things learned the hard way</h2>
 
@@ -109,7 +111,7 @@ that runner. The template README says so, because on screen it is built to look 
 · <a href="https://mtomasgaard.github.io/snuggery-apps-template/zips/running-dashboard.zip">Get the ZIP</a>
 for an iPhone with <a href="../../">Snuggery</a> · <a href="../../examples/">All the examples</a></p>
 
-<footer>Mathias Tomasgaard, September 2026. <a href="../../">Snuggery</a></footer>
+<footer>Mathias Tomasgaard, September 2026; updated October 2026. <a href="../../">Snuggery</a></footer>
 
 </main>
 </body>

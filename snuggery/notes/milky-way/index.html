@@ -15,9 +15,9 @@
     <p class="tagline">One of the example apps. Built by asking an AI; runs offline in Snuggery.</p>
 </header>
 
-<video width="720" height="1564" aria-label="Clip: Milky Way running in Snuggery — the planets with time running, the Sun's neighbourhood, the whole galaxy" class="clip" controls muted playsinline preload="none" poster="../../media/clips/plain/milky-way.jpg" src="../../media/clips/plain/milky-way.mp4"></video>
+<video width="720" height="1566" aria-label="Clip: Milky Way running in Snuggery — the planets with time running, the Sun's neighborhood, the whole galaxy" class="clip" controls muted playsinline preload="none" poster="../../media/clips/plain/milky-way.jpg" src="../../media/clips/plain/milky-way.mp4"></video>
 
-<p>I wanted one continuous zoom: start a few hundred kilometres above a moon, pinch, and keep going
+<p>I wanted one continuous zoom: start a few hundred kilometers above a moon, pinch, and keep going
 until the whole galaxy is in view and the Sun is a dot two thirds of the way out — with nothing on
 the way invented. Every planetarium app I know fills the gaps with artwork. This one shows what has
 been measured, says when a published fit is standing in for a measurement, and shows nothing at
@@ -31,25 +31,25 @@ pipeline and the app, and then reviewed the result against the rule.</p>
 <h2>What is real in it</h2>
 
 <ul>
-    <li>The Sun, the planets and the Moon from JPL's DE430 ephemeris, for any date from 1900 to 2100; 21 moons of Mars and the giant planets from 1950 to 2050; each globe turned by the IAU rotation model, with NASA and USGS maps on it.</li>
+    <li>The Sun, the planets and the Moon from JPL's DE430 ephemeris, for any date from 1900 to 2099; 21 moons of Mars and the giant planets from 1950 to 2049; each globe turned by the IAU rotation model, with NASA and USGS maps on it.</li>
     <li>9,989 asteroids and comets from the JPL Small-Body Database, the Minor Planet Center and ESA's NEO Coordination Centre, propagated on the phone.</li>
     <li>220,000 stars in three dimensions, mostly at their Gaia distances, drawn at their true brightness; the constellation figures come apart as you leave the Sun, because they are lines of sight, not shapes.</li>
-    <li>The galaxy as it has actually been measured: globular clusters, satellite galaxies, stellar streams, where the young stars crowd, and two published spiral-arm fits, each labelled as a fit — no artist's impression anywhere.</li>
+    <li>The galaxy as it has actually been measured: globular clusters, satellite galaxies, stellar streams, where the young stars crowd, and two published spiral-arm fits, each labeled as a fit — no artist's impression anywhere.</li>
     <li>A time bar in the Solar System, from an hour to a year per second, with each planet trailing its real path. Outside the Solar System the bar hides: at those scales nothing visibly moves in a human lifetime, and the app does not pretend otherwise.</li>
 </ul>
 
 <p>Tap anything — a planet, a star, a stream, a spiral-arm fit — for a card with what is known
-about it and where the number comes from. The About panel lists every source, its licence and its
+about it and where the number comes from. The About panel lists every source, its license and its
 accuracy note.</p>
 
 <figure>
-    <img loading="lazy" decoding="async" width="1304" height="1385" src="../../media/composites/milky-way.jpg" alt="Milky Way: the Solar System with the planets on their orbits, and the galaxy seen from outside">
+    <img loading="lazy" decoding="async" width="1304" height="1391" src="../../media/composites/milky-way.jpg" alt="Milky Way: the Solar System with the planets on their orbits, and the galaxy seen from outside">
     <figcaption>The two ends of the zoom: the Solar System with time running, and the galaxy from outside with the Sun marked.</figcaption>
 </figure>
 
 <h2>One zoom across fifteen orders of magnitude</h2>
 
-<p>The hard part is numbers, not pictures. A camera that can be 300 kilometres from a moon and
+<p>The hard part is numbers, not pictures. A camera that can be 300 kilometers from a moon and
 four light-hours from Neptune in the same scene cannot live in 32-bit floats. So the camera lives in
 64-bit, in astronomical units, and nothing on the GPU ever sees those values: each frame is drawn in
 three passes — the stars in parsecs around the Sun, the galaxy in kiloparsecs in its own frame,
@@ -61,12 +61,12 @@ about a light-year it is the galactic pole, so the disc does; in between it turn
 leaving the Solar System shows its plane tilting by about sixty degrees against the galaxy's, which
 is the real angle between them.</p>
 
-<h2>A note on the licences</h2>
+<h2>A note on the licenses</h2>
 
 <p>The star, sky and young-star map files contain data from the European Space Agency's Gaia
 mission, processed by its Data Processing and Analysis Consortium, which is licensed for
 non-commercial use only; the app's <em>CREDITS.txt</em> says so, file by file, and so does the
-template's licence. The two young-star maps are redistributed under a permission their authors
+template's license. The two young-star maps are redistributed under a permission their authors
 gave to another project, and no separate grant to downstream copies was found — which the credits
 also say, because saying what you do not know is the whole point of the app.</p>
 
