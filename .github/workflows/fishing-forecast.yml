@@ -14,6 +14,11 @@ name: Fishing forecast
 # that changes nothing commits nothing, and one that does makes one commit, so GitHub Pages builds
 # at most once an hour for this, far inside its limit of 10 builds an hour. (The push starts the
 # branch site's Pages build by itself: measured on the first run, 2026-10-18.)
+#
+# The field pictures of every model run of the last 48 hours stay in fishing/fields/ (at least the
+# newest two of each layer), listed in fishing/fields/index.json and index.png; a run's files are
+# written once and deleted when it ages out, so the tree on Pages stays a few MB.
+# fishing/README.md has the details.
 
 on:
   schedule:

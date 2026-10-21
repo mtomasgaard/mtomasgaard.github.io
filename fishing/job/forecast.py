@@ -12,8 +12,10 @@ Sources: MET Norway Locationforecast 2.0 (complete), Oceanforecast 2.0, Sunrise 
 Kartverket's tide API (CC BY 4.0); fields.py for the gridded layers.
 """
 
+import calendar
 import datetime as dt
 import json
+import math
 import os
 import shutil
 import sys
@@ -24,7 +26,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import fields                      # noqa: E402
 import indicators as ind           # noqa: E402
-from common import fetch, FetchError   # noqa: E402
+from common import fetch, FetchError, write_bytes_png   # noqa: E402
 
 try:
     from zoneinfo import ZoneInfo
@@ -277,31 +279,107 @@ def region_of(spot):
 
 # ── fields on disk ───────────────────────────────────────────────────────────
 
-def place_fields(meta, tmp, dest):
-    """Move this run's atlases into fishing/fields/ under names that carry each layer's run, keep
-    the previous run of each layer too (so a forecast.json fetched an hour ago still finds its
-    pictures), and delete everything older."""
-    os.makedirs(dest, exist_ok=True)
-    keep = set()
-    for name, layer in meta["layers"].items():
-        run = layer["run"].rstrip("Z")
-        layer["file"] = "%s-{region}-%s-{chunk}.png" % (name, run)
-        for f in os.listdir(tmp):
-            if f.startswith(name + "-"):
-                parts = f[:-4].split("-")          # layer-region-chunk
-                target = "%s-%s-%s-%s.png" % (parts[0], parts[1], run, parts[2])
-                shutil.copyfile(os.path.join(tmp, f), os.path.join(dest, target))
-                keep.add(target)
+# How long a model run's pictures stay on Pages: every run from the last two days (by the run's own
+# time), and the newest two of each layer whatever their age. A forecast.json a day or two old, in
+# an app whose data address was not refreshed, then still finds its own pictures; one older than
+# that falls back in the app to the newest run in fields/index.png, and says so.
+KEEP_HOURS = 48
+KEEP_NEWEST = 2
+
+
+def run_epoch(run):
+    """'20261021T06' or '20261021T06Z' → epoch seconds."""
+    return calendar.timegm(time.strptime(run.rstrip("Z"), "%Y%m%dT%H"))
+
+
+def runs_on_disk(dest):
+    """{layer: set of runs} of the atlases in dest (`layer-region-run-chunk.png`)."""
     runs = {}
     for f in os.listdir(dest):
         if f.endswith(".png") and f.count("-") == 3:
             layer, _, run, _ = f[:-4].split("-")
             runs.setdefault(layer, set()).add(run)
-    for layer, rs in runs.items():
-        for old in sorted(rs)[:-2]:
+    return runs
+
+
+def runs_to_keep(runs, now):
+    """The runs of one layer to keep at `now`: those from the last KEEP_HOURS, and the newest
+    KEEP_NEWEST whatever their age."""
+    ordered = sorted(runs)
+    return set(ordered[-KEEP_NEWEST:]) | {r for r in ordered if run_epoch(r) >= now - KEEP_HOURS * 3600}
+
+
+def place_fields(meta, tmp, dest, now):
+    """Copy this run's atlases into fishing/fields/ under names that carry each layer's run, then
+    delete every run that runs_to_keep lets go. A file that is already there with the same bytes is
+    left alone, so git sees no change; nothing is ever rewritten in place under the same run."""
+    os.makedirs(dest, exist_ok=True)
+    for name, layer in meta["layers"].items():
+        run = layer["run"].rstrip("Z")
+        layer["file"] = "%s-{region}-%s-{chunk}.png" % (name, run)
+        if not os.path.isdir(tmp):
+            continue
+        for f in os.listdir(tmp):
+            if f.startswith(name + "-"):
+                parts = f[:-4].split("-")          # layer-region-chunk
+                target = "%s-%s-%s-%s.png" % (parts[0], parts[1], run, parts[2])
+                shutil.copyfile(os.path.join(tmp, f), os.path.join(dest, target))
+    for layer, rs in runs_on_disk(dest).items():
+        keep = runs_to_keep(rs, now)
+        for old in rs - keep:
             for f in list(os.listdir(dest)):
                 if f.startswith(layer + "-") and ("-%s-" % old) in f:
                     os.remove(os.path.join(dest, f))
+
+
+def files_of(entry):
+    """Every atlas file a layer entry (forecast.json's fields.layers[name]) names."""
+    chunks = int(math.ceil(entry["hours"] / float(fields.CHUNK)))
+    return [entry["file"].replace("{region}", rid).replace("{chunk}", str(c))
+            for rid in entry["regions"] for c in range(chunks)]
+
+
+def write_index(meta, previous_meta, dest):
+    """fields/index.json and fields/index.png: every run of every layer whose atlases are all on
+    Pages, newest first, each entry shaped as forecast.json's fields.layers[name]. The app reads the
+    PNG (an online app may show pictures from Pages but not fetch from it; js/packed.js) and, when
+    the run its forecast names is gone, draws the newest run here instead and says so. Entries come
+    from this run, the index this job wrote last time and, once, the previous forecast.json; a run
+    whose description is known from none of them is left out rather than guessed. No timestamp, so
+    an unchanged set of runs writes identical files."""
+    known = {}
+
+    def add(name, entry):
+        if entry and entry.get("run") and entry.get("file"):
+            known.setdefault(name, {})[entry["run"]] = entry
+
+    old_path = os.path.join(dest, "index.json")
+    if os.path.exists(old_path):
+        try:
+            with open(old_path) as f:
+                for name, entries in json.load(f).get("layers", {}).items():
+                    for e in entries:
+                        add(name, e)
+        except (OSError, ValueError):
+            pass
+    for name, e in ((previous_meta or {}).get("layers") or {}).items():
+        add(name, e)
+    for name, e in meta["layers"].items():
+        add(name, e)
+    present = set(os.listdir(dest))
+    layers = {}
+    for name in sorted(known):
+        entries = [e for e in known[name].values() if all(f in present for f in files_of(e))]
+        entries.sort(key=lambda e: e["t0"], reverse=True)
+        if entries:
+            layers[name] = entries
+    index = {"schema": 1, "chunk": meta["chunk"], "regions": meta["regions"], "layers": layers}
+    payload = json.dumps(index, sort_keys=True, separators=(",", ":")).encode()
+    with open(old_path + ".tmp", "wb") as f:
+        f.write(payload)
+    os.replace(old_path + ".tmp", old_path)
+    write_bytes_png(os.path.join(dest, "index.png"), payload)
+    return index
 
 
 # ── main ─────────────────────────────────────────────────────────────────────
@@ -352,13 +430,19 @@ def main():
     tmp = os.path.join(os.environ.get("RUNNER_TEMP", "/tmp"), "fishing-fields")
     shutil.rmtree(tmp, ignore_errors=True)
     meta, nbytes = fields.build(tmp, log=log)
-    if previous and previous.get("fields"):
+    previous_meta = previous.get("fields") if previous else None
+    if previous_meta:
         # a layer that failed this hour keeps last hour's, if its files are still there
-        for name, layer in previous["fields"].get("layers", {}).items():
+        for name, layer in previous_meta.get("layers", {}).items():
             if name not in meta["layers"]:
                 meta["layers"][name] = layer
-    place_fields(meta, tmp, os.path.join(ROOT, "fields"))
-    log("fields: %d bytes this run" % nbytes)
+    dest = os.path.join(ROOT, "fields")
+    place_fields(meta, tmp, dest, now)
+    index = write_index(meta, previous_meta, dest)
+    on_pages = sum(os.path.getsize(os.path.join(dest, f)) for f in os.listdir(dest))
+    log("fields: %d bytes this run; on Pages %d runs, %d bytes (%s)" % (
+        nbytes, sum(len(v) for v in index["layers"].values()), on_pages,
+        ", ".join("%s %d" % (k, len(v)) for k, v in sorted(index["layers"].items()))))
 
     doc = {
         "schema": SCHEMA,

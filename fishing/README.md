@@ -5,8 +5,10 @@ The data behind **Fishing Window**, a personal mini-app for Snuggery. Not for na
 | Path | What | Written by |
 | --- | --- | --- |
 | `forecast.json` | point forecasts for a few saved spots, by opaque id, and the index of the fields | `.github/workflows/fishing-forecast.yml`, hourly in the day |
-| `fields/` | gridded wind, current, sea temperature and waves for two regions, RGB-packed PNG atlases | the same job; each layer keeps its current and previous model run |
+| `fields/` | gridded wind, current, sea temperature and waves for two regions, RGB-packed PNG atlases | the same job; every model run of the last 48 hours stays, and at least the newest two of each layer |
+| `fields/index.json`, `fields/index.png` | every run whose atlases are all here, newest first; the PNG carries the same bytes for the app, which may show pictures from here but not fetch | the same job, rewritten only when the set of runs changes |
 | `depth/{z}/{x}/{y}.png` | Kartverket's 50 m depth grid for the same two regions as RGB-packed Web Mercator tiles, z8 to z12 | built once from the app's `tools/build-depth.mjs` |
+| `contours/{10,12}/{x}/{y}.png` | Kartverket's sea-chart depth contours and coastline for the two regions, simplified and packed into PNGs | built once from the app's `tools/build-contours.mjs` |
 | `job/` | the job: Python 3, standard library only; `python3 -m unittest discover -s fishing/job` tests the indicator maths | |
 
 The spots' names and coordinates are not here: the job reads `{id, lat, lon}` from the repository
@@ -24,7 +26,10 @@ secret `FISHING_SPOTS`, and nothing in this folder names or places a spot.
 - **Kartverket**, CC BY 4.0: the tide API at vannstand.kartverket.no (`locationdata`, 10-minute
   prediction, observation and weather-effect forecast; `tab` for high and low water), and
   "Dybdedata – terrengmodeller 50 m" from Geonorge (Basisdata, cells B0608 and B1412, XYZ, EUREF89
-  UTM 33), which Kartverket marks as not for navigation. © Kartverket.
+  UTM 33), and the contours (`Dybdekurve`) and coastline (`Kystkontur`) of "Sjøkart – Dybdedata"
+  from its WFS (`wfs.geonorge.no/skwms1/wfs.dybdedata`), which Kartverket marks as not for
+  navigation. © Kartverket. Grids finer than 50 m are classified inside the territorial limit, so
+  none exists openly for these waters.
 
 ## forecast.json, schema 1
 
@@ -43,3 +48,11 @@ wind, an estimate), `trend trendWord` (hPa over 3 h), `light` (`d`ay, `c`ivil tw
 `fields.layers.{wind,sea,wave}`: the model and run, `t0` (the run's first hour), `hours`, `file`
 (`{region}` and `{chunk}` to fill), `enc` and per region the grid (`nx ny lon0 lat1 dlon dlat`).
 `job/fields.py` documents the pixel encodings.
+
+## fields/index.json, schema 1
+
+`chunk`, `regions`, and `layers.{wind,sea,wave}`: a list of entries shaped as `forecast.json`'s
+`fields.layers[name]`, newest first, one per run whose atlases are all in `fields/`. `index.png`
+holds the same bytes, three to a pixel: `F`, `W`, 1, the length and the CRC-32 (4 bytes each,
+big-endian), the JSON, zeros (`job/common.py`, `pack_bytes`). The app reads it when the run its
+forecast names has gone, and then draws the newest run instead and says so.

@@ -174,3 +174,61 @@ def write_png_rgb(path, width, height, rows):
     with open(path, "wb") as f:
         f.write(png)
     return len(png)
+
+
+# ── bytes in a picture ───────────────────────────────────────────────────────
+
+PACKED_MAGIC = b"FW\x01"
+
+
+def pack_bytes(payload):
+    """The stream the app's js/packed.js reads: 'F' 'W' 1, the payload's length and CRC-32 (each 4
+    bytes, big-endian), the payload. An online mini-app cannot fetch from other sites, only show
+    their pictures, so bytes it needs from Pages travel as the RGB of a PNG."""
+    return PACKED_MAGIC + struct.pack(">II", len(payload), zlib.crc32(payload) & 0xFFFFFFFF) + payload
+
+
+def unpack_bytes(stream):
+    """The inverse of pack_bytes, for tests: the payload, or ValueError."""
+    if stream[:3] != PACKED_MAGIC:
+        raise ValueError("not a packed stream")
+    n, crc = struct.unpack(">II", stream[3:11])
+    payload = stream[11:11 + n]
+    if len(payload) != n or (zlib.crc32(payload) & 0xFFFFFFFF) != crc:
+        raise ValueError("a packed stream that does not check out")
+    return payload
+
+
+def write_bytes_png(path, payload, width=256):
+    """`payload` packed three bytes to a pixel into an RGB PNG `width` pixels wide (fewer for a small
+    payload), zero-padded. Deterministic: the same payload writes the same file."""
+    data = pack_bytes(payload)
+    width = max(1, min(width, (len(data) + 2) // 3))
+    row = 3 * width
+    data += b"\0" * ((-len(data)) % row)
+    rows = [bytearray(data[i:i + row]) for i in range(0, len(data), row)]
+    return write_png_rgb(path, width, len(rows), rows)
+
+
+def read_png_rgb(path):
+    """(width, height, bytes) of an 8-bit RGB PNG written by write_png_rgb, for tests."""
+    with open(path, "rb") as f:
+        png = f.read()
+    pos, idat, width, height = 8, b"", 0, 0
+    while pos < len(png):
+        n = struct.unpack(">I", png[pos:pos + 4])[0]
+        tag, body = png[pos + 4:pos + 8], png[pos + 8:pos + 8 + n]
+        if tag == b"IHDR":
+            width, height = struct.unpack(">II", body[:8])
+        elif tag == b"IDAT":
+            idat += body
+        pos += 12 + n
+    raw = zlib.decompress(idat)
+    stride = 3 * width + 1
+    out = bytearray()
+    for y in range(height):
+        line = raw[y * stride:(y + 1) * stride]
+        if line[0] != 0:
+            raise ValueError("filtered PNG rows are not expected here")
+        out.extend(line[1:])
+    return width, height, bytes(out)
