@@ -18,12 +18,12 @@
 <div class="card">
     <p><strong>Snuggery: Mini-Apps</strong> — Snuggery for short — is an iPhone app for the small apps people build by asking an AI.
     Ask for a training log, a recipe box or a dashboard and you get a folder of HTML with nowhere to
-    run it on a phone; Snuggery is where it lives. Import the ZIP, tap it, it runs — offline, in a
-    sandbox that cannot reach the network, beside the user's PDFs, notes and spreadsheets. Apps read
+    run it on a phone; Snuggery is where it lives. Import the ZIP, tap it, it runs — offline by
+    default, in a sandbox, beside the user's PDFs, notes and spreadsheets. Apps read
     the data files stored next to them, which the user can edit in place. It imports many apps at
     once — several ZIPs picked together, several files shared together, or one bundle of example
     apps — and offers newer versions of the examples that come with it. Since 1.3, Snuggery itself
-    can fetch an app's data file from an address the user approves; the mini-apps stay offline. Made by one developer in Norway. One purchase after a free
+    can fetch an app's data file from an address the user approves. Made by one developer in Norway. One purchase after a free
     week.</p>
 </div>
 
@@ -34,10 +34,10 @@
     <li><strong>Platform:</strong> iPhone, iOS 18 and later. Ask needs a phone with Apple Intelligence (iOS 26).</li>
     <li><strong>Price:</strong> one purchase after a complete 7-day trial. No subscription, no account. When the trial ends, adding new content, Ask and connections (setting one up, and every fetch) are gated; everything already imported keeps opening and can always be exported, and removing a connection is never gated.</li>
     <li><strong>What it does not do:</strong> generate apps. Its Create tab writes a prompt for the user's own AI; the ZIP that comes back is what gets imported. The app contacts no AI service.</li>
-    <li><strong>Privacy:</strong> no account, no analytics, no third-party frameworks. Offline by default: the app makes network requests of its own only for a connection the user sets up and approves (a data file's address, or their own GitHub repository), and nothing goes to the developer (GitHub does show the owner of Snuggery's GitHub App which accounts installed it). Mini-apps are blocked from the network by a WebKit content rule list, a Content-Security-Policy header and the navigation policy, independently, and there is no JavaScript-to-native bridge. Everything but a connection and the examples page works in Airplane Mode; you can check. <a href="../privacy/">The privacy policy</a> says what is sent and to whom, in about five minutes' reading.</li>
+    <li><strong>Privacy:</strong> no account, no analytics, no third-party frameworks. Offline by default: the app makes network requests of its own only for a connection the user sets up and approves (a data file's address, or their own GitHub repository), and nothing goes to the developer (GitHub does show the owner of Snuggery's GitHub App which accounts installed it). Mini-apps are kept offline by a WebKit content rule list, a Content-Security-Policy header and the navigation policy, independently, and there is no JavaScript-to-native bridge; a mini-app may show images and fonts only from sites the user allowed for that app, and both the rule list and the policy still refuse everything else. Everything but a connection, an allowed app's pictures and the examples page works in Airplane Mode; you can check. <a href="../privacy/">The privacy policy</a> says what is sent and to whom, in about five minutes' reading.</li>
     <li><strong>App Review:</strong> every version so far approved by App Review; the review note makes the guideline 4.7 (HTML5 mini apps) case explicitly — the app distributes nothing; every mini-app is a file the user imported, the way a document viewer holds documents.</li>
-    <li><strong>Data files:</strong> mini-apps read the data files stored beside them — a <code>.csv</code> or a <code>.json</code> the user can edit in place, or keep up to date on a schedule of their own (<a href="../notes/the-loop/">how the developer's own training dashboard does it</a>). Snuggery can also fetch an app's data file itself, from an address the user approved, and start their own GitHub job with <em>Rebuild Data</em>; mini-apps themselves never go online.</li>
-    <li><strong>The examples:</strong> nineteen apps in an <a href="https://github.com/mtomasgaard/snuggery-apps-template">open template repository</a>, all built by asking an AI — a 3D mountain from Kartverket's open terrain, the Norne oil-field reservoir model, two atlases of the North Sea's and the world's oil and gas, the galaxy from JPL and Gaia data, a human body in 1,752 parts, a Garmin dashboard, an original kart racer. They <a href="https://mtomasgaard.github.io/snuggery-apps-template/#apps">run in a browser</a> too.</li>
+    <li><strong>Data files:</strong> mini-apps read the data files stored beside them — a <code>.csv</code> or a <code>.json</code> the user can edit in place, or keep up to date on a schedule of their own (<a href="../notes/the-loop/">how the developer's own training dashboard does it</a>). Snuggery can also fetch an app's data file itself, from an address the user approved, and start their own GitHub job with <em>Rebuild Data</em>; mini-apps themselves fetch no data files.</li>
+    <li><strong>The examples:</strong> twenty-one apps in an <a href="https://github.com/mtomasgaard/snuggery-apps-template">open template repository</a>, all built by asking an AI — a 3D mountain from Kartverket's open terrain, the Norne oil-field reservoir model, two atlases of the North Sea's and the world's oil and gas, the galaxy from JPL and Gaia data, a human body in 1,752 parts, a Garmin dashboard, an original kart racer and, online, all of Norway in 3D from Kartverket's live map and terrain, and Hello Map, a live USGS topographic map. All but Norway in 3D <a href="https://mtomasgaard.github.io/snuggery-apps-template/#apps">run in a browser</a> too.</li>
     <li><strong>Built with:</strong> Apple frameworks only — SwiftUI, SwiftData, WebKit, StoreKit 2, App Intents, BackgroundTasks, UserNotifications, Security and, for Ask, Foundation Models; no third-party code. Mini-apps are served over a custom URL scheme whose handler is a static file server for one package directory, each app with its own origin; ZIP import inspects every entry before extracting and is bounded by absolute limits, never compression ratios.</li>
     <li><strong>App Store:</strong> <a href="https://apps.apple.com/app/id6805883209">apps.apple.com/app/id6805883209</a></li>
     <li><strong>Contact:</strong> <a href="mailto:mtomasgaard+snuggery@gmail.com">mtomasgaard+snuggery@gmail.com</a> — codes for the purchase on request.</li>
@@ -75,7 +75,7 @@ caption below.</p>
 
 <h2>The examples, in motion</h2>
 
-<p>All nineteen examples, one take each, drawn frame by frame by the apps' own code at phone size, with a ring
+<p>Nineteen of the examples, one take each, drawn frame by frame by the apps' own code at phone size, with a ring
 at each touch. Real time, nothing sped up, 720×1564, H.264, no sound. Each was checked by two independent
 reviews against its frames and for flashing (at most two flashes in any second). Snug Kart's take has one cut,
 from the first lap to the finish.</p>

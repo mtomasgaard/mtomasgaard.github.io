@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Snuggery: Mini-Apps — Privacy Policy</title>
-<meta name="description" content="Snuggery collects nothing: no servers, no accounts, no analytics. It is offline by default, and goes online only for connections you set up.">
+<meta name="description" content="Snuggery collects nothing: no servers, no accounts, no analytics. It is offline by default, and goes online only for connections you set up and sites you allow.">
 <link rel="stylesheet" href="../style.css?v=20250929">
 </head>
 <body>
@@ -15,7 +15,7 @@
     <p class="tagline">Snuggery: Mini-Apps, for iPhone</p>
 </header>
 
-<p class="updated">Last updated: October 19, 2026</p>
+<p class="updated">Last updated: November 1, 2026</p>
 
 <div class="card">
     <p><strong>Snuggery does not collect any personal data. Nothing you do in it is sent to its
@@ -24,14 +24,17 @@
 
 <p>Everything you import into Snuggery — your files, your folders, and the mini-apps you run —
 stays on your device. Snuggery has no servers, no account system, and no analytics. It is offline
-by default: it goes online only for a connection you set up yourself, described under
-<a href="#network">Network</a>, and never uploads your files.</p>
+by default: it goes online only for a connection you set up yourself, or for the sites you allow an
+app to show pictures from, both described under <a href="#network">Network</a>. Snuggery itself
+never uploads your files.</p>
 
 <h2>Mini-apps</h2>
 
-<p>Mini-apps run inside Snuggery are blocked from reaching the internet. They can read only their
+<p>Mini-apps run inside Snuggery are offline unless you allow otherwise. They can read only their
 own files and keep only their own saved data, inside their own sandbox, and cannot see each other's
-data or the rest of your library.</p>
+data or the rest of your library. An app you allow may show pictures, map tiles and fonts from the
+sites it lists, and nothing else from the internet; see
+<a href="#online-apps">Apps you let show things from the web</a>.</p>
 
 <h2>Purchases</h2>
 
@@ -40,8 +43,8 @@ it never sees your payment details, and it has no way to identify you.</p>
 
 <h2 id="network">Network</h2>
 
-<p><strong>Offline by default.</strong> Until you set up a connection, Snuggery makes no network
-requests of its own.</p>
+<p><strong>Offline by default.</strong> Until you set up a connection or allow an app's sites,
+nothing in Snuggery goes online.</p>
 
 <p><strong>Connections you set up.</strong> A mini-app's <em>Keep This Up To Date</em> screen can
 take a web address for that app's data file. Nothing is fetched until you approve the address. The
@@ -68,6 +71,23 @@ addresses inside the repository or folder you chose. When you start a job from S
 receives only what you set up for that job. Snuggery sends no cookies and nothing from your library.
 Only a successful answer is saved, and only into that app's data file.</p>
 
+<p id="online-apps"><strong>Apps you let show things from the web.</strong> A mini-app can name up
+to eight sites it shows pictures, map tiles or fonts from. Nothing loads from them until you allow
+it, on a screen that lists every site. After that, while that app is open, it can load pictures and
+fonts from those sites and nothing else: no other site, no scripts, styles, audio or video from the
+web, and no forms or uploads. Each site receives an ordinary HTTPS request for every picture or
+font, with your IP address and the time, and the app decides what each request asks for, which can include
+something you typed into it or data the app holds. A site may also see a code that stays the same
+for that app for as long as you keep it, even after a backup is restored onto another iPhone, so it
+can tell that app's requests apart from others'. A site can also pass a request on to another
+site, as the screen that asks you says. Snuggery sends none of this to its developer. An app that
+uses a private data source (one with a key, your GitHub sign-in, or an address on your own network)
+stays offline, and so does an app that has held data from one on this iPhone since version 1.4. An app
+exported and imported again, or data fetched by an earlier version, is not tracked, so keep private
+data and online maps in separate apps. Make an app offline again from its ⋯ menu (<em>Sites This App Uses…</em>) or
+from Settings → Connections, whether or not you have bought Snuggery. A backup never carries these
+approvals: after a restore, each app asks again.</p>
+
 <p><strong>GitHub.</strong> Signing in to GitHub is optional. If you do, you sign in on GitHub's own
 page, and you install Snuggery's GitHub App only on the repositories you choose. Snuggery then
 contacts <code>github.com</code> and <code>api.github.com</code> to keep the sign-in current, to
@@ -89,7 +109,7 @@ this iPhone at once, whether or not you have bought Snuggery. It cannot cancel t
 itself, so Snuggery links you to the GitHub page where you can.</p>
 
 <p><strong>Nothing goes to the developer.</strong> Every request goes from your iPhone straight to a
-site you named. Snuggery has no server to send anything to, and its developer never sees your
+site you named or allowed. Snuggery has no server to send anything to, and its developer never sees your
 addresses, your keys or your data. One thing GitHub itself records: Snuggery's GitHub App is
 registered by its developer, and GitHub shows an App's owner which accounts installed it and on
 which repositories. The developer keeps the App's key offline and never uses it to read anything.

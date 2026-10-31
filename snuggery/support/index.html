@@ -37,8 +37,11 @@ access to and no server to be down.</p>
 
 <h3>A mini-app I imported shows a blank screen</h3>
 <p>It is almost always trying to load something from the internet — a font, a chart library, an
-image on a server. Mini-apps in Snuggery run fully offline and cannot make network requests, by
-design. Ask your AI to rebuild it with everything included in the ZIP and no external links.</p>
+image on a server. Mini-apps in Snuggery run offline by design, and an app you allow to show things
+from the web still gets only pictures, map tiles and fonts from the sites it lists, never a script
+or a library. Ask your AI to rebuild it with everything included in the ZIP and no external links.
+If what it needs is a live map, turn on <em>Shows maps and images from the web</em> in Create, so
+the prompt asks for an app that can go online.</p>
 
 <h3>My ZIP was refused</h3>
 <p>Snuggery inspects an archive before extracting anything, and refuses structures that are unsafe
@@ -111,11 +114,39 @@ open the app, on the same approval sheet, and fetches nothing unless you tap <em
 <em>Not Now</em> is remembered. You can also sign in to GitHub to reach a private repository of
 yours. One sign-in covers all your apps, and <em>Choose from GitHub…</em> helps you find the data
 file. Each connection is approved once, listed under <strong>Settings → Connections</strong>, and can
-be removed there at any time. Mini-apps themselves never reach the internet. The
+be removed there at any time. A mini-app reaches nothing on its own; one you allow may show
+pictures, map tiles and fonts from the sites it lists (below). The
 <a href="../privacy/#network">privacy policy</a> says exactly what is sent, and to whom.</p>
 <p><strong>Snuggery never asks you to enter a code someone else sent you.</strong> Signing in to
 GitHub shows a short code in Snuggery for you to type on GitHub's own page. If a code reaches you
 by message, email or a call, it is someone else's sign-in: don't enter it.</p>
+
+<h3>Why does an app ask to show things from the web?</h3>
+<p>Some apps, a map above all, need pictures that cannot travel inside the ZIP. Such an app lists
+the sites it shows them from, and when you import it or first open it, Snuggery asks
+<em>Show Things From the Web?</em> with every site listed. <strong>Allow</strong> lets it load
+pictures, map tiles and fonts from those sites, and nothing else. <strong>Keep Offline</strong>
+keeps it as offline as every other app; it still opens, and says what it cannot show. Each site you
+allow sees a request for every picture, with your IP address, and the app chooses what each request
+asks for, so allow only apps you trust. You can change your mind at any time: the app's
+<strong>⋯</strong> menu → <em>Sites This App Uses…</em>, or <strong>Settings → Connections</strong>.
+<a href="../privacy/#online-apps">The privacy policy</a> has the details.</p>
+
+<h3>The map in an app is blank</h3>
+<p>Check that the app is allowed to use its sites: <strong>⋯</strong> → <em>Sites This App
+Uses…</em> → <em>Allow These Sites…</em>. If it is allowed and the map stays blank:</p>
+<ul>
+    <li>The phone may have no connection, or a work or school network may block the sites. Try
+    another network.</li>
+    <li>An app that uses a private data source (a key, your GitHub sign-in, or an address on your own
+    network) stays offline, and cannot be allowed. Keep the private data and the map in two
+    apps.</li>
+    <li>After the free week, allowing an app's sites needs the purchase. Making an app offline
+    never does.</li>
+    <li>Scripts written into an app's pages stop running once it goes online; the
+    <em>Allow</em> screen and the app's Diagnostics say when an app has them. Ask your AI to move them into
+    <code>.js</code> files.</li>
+</ul>
 
 <h3>How do I refresh an app?</h3>
 <p>The ↻ button in an app's toolbar has <em>Reload</em> (start the app again from its files),
@@ -138,8 +169,8 @@ day, with the app's name on each. Restoring a backup turns them off again.</p>
 <h3>Do I need a subscription?</h3>
 <p>No. Snuggery is one payment, once. You get the complete app free for seven days first, and when
 the trial ends, everything already in your library stays openable and exportable. Adding new
-things, Ask, and fetching new data for your apps then need the purchase; removing a connection never
-does.</p>
+things, Ask, fetching new data for your apps and allowing an app's sites then need the purchase;
+removing a connection or making an app offline never does.</p>
 
 <h3>Does Snuggery build the apps for me?</h3>
 <p>No. Snuggery writes a prompt you paste into your own AI — Claude, ChatGPT, or any other — and
