@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="880" viewBox="0 0 1200 880" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Live data and live maps in Snuggery 1.4</title>
+<desc id="d">An app's data file, at an address the person approved, is fetched by Snuggery: when the app opens, when the person comes back to it, from Get New Data, in the background if turned on, or after Rebuild Data has run the person's own job. The mini-app fetches nothing itself; it redraws when the new data lands. An online app shows pictures, map tiles and fonts from the sites it lists, after Allow; everything else is blocked.</desc>
+<style>@media (prefers-reduced-motion: reduce) { .dot { display: none; } }</style>
+<defs><marker id="ah-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f8a4c"/></marker><marker id="ah-trigger" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8a7420"/></marker><marker id="ah-show" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8a3ea8"/></marker></defs>
+<rect width="1200" height="880" fill="#eef0f4"/>
+<text class="section" x="40" y="40" font-size="13" font-weight="700" fill="#5c6472" letter-spacing="1.4">LIVE DATA, SINCE 1.3</text>
+<path id="e1" d="M 175 208 L 175 262" fill="none" stroke="#1f8a4c" stroke-width="3" marker-end="url(#ah-data)"/>
+<circle class="dot" r="6" fill="#1f8a4c"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0s"><mpath href="#e1" xlink:href="#e1"/></animateMotion></circle>
+<text class="lbl" x="190" y="241" font-size="15" fill="#197a43" text-anchor="start" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">writes</text>
+<path id="e2" d="M 310 349 C 365 349, 365 220, 420 220" fill="none" stroke="#1f8a4c" stroke-width="3" marker-end="url(#ah-data)"/>
+<circle class="dot" r="6" fill="#1f8a4c"><animateMotion dur="2.4s" repeatCount="indefinite" begin="-0.8s"><mpath href="#e2" xlink:href="#e2"/></animateMotion></circle>
+<text class="lbl" x="365" y="292" font-size="15" fill="#197a43" text-anchor="middle" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">fetched</text>
+<path id="e3" d="M 420 110 L 310 110" fill="none" stroke="#8a7420" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round" marker-end="url(#ah-trigger)"/>
+<circle class="dot" r="5" fill="#8a7420"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0s"><mpath href="#e3" xlink:href="#e3"/></animateMotion></circle>
+<text class="lbl" x="365" y="98" font-size="15" fill="#7d6a1d" text-anchor="middle" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">starts it</text>
+<path id="e4" d="M 760 169 L 860 169" fill="none" stroke="#1f8a4c" stroke-width="3" marker-end="url(#ah-data)"/>
+<circle class="dot" r="6" fill="#1f8a4c"><animateMotion dur="1.8s" repeatCount="indefinite" begin="-0.9s"><mpath href="#e4" xlink:href="#e4"/></animateMotion></circle>
+<text class="lbl" x="810" y="157" font-size="15" fill="#197a43" text-anchor="middle" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">new data</text>
+<rect x="40" y="58" width="270" height="150" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="2"/>
+<path d="M 40 72 a 14 14 0 0 1 14 -14 h 242 a 14 14 0 0 1 14 14 v 32 h -270 z" fill="#f4f6fa"/>
+<line x1="40" y1="104" x2="310" y2="104" stroke="#dfe3ea" stroke-width="1.5"/>
+<text class="title" x="60" y="88" font-size="20" font-weight="700" fill="#1b1f27">The job</text>
+<text class="tag" x="290" y="87" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">OFF THE PHONE</text>
+<text class="body" x="60" y="136" font-size="16" fill="#5c6472">Rebuilds the data file, on a</text>
+<text class="body" x="60" y="160" font-size="16" fill="#5c6472">schedule or when Rebuild</text>
+<text class="body" x="60" y="184" font-size="16" fill="#5c6472">Data starts it on GitHub.</text>
+<rect x="40" y="262" width="270" height="174" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="2"/>
+<path d="M 40 276 a 14 14 0 0 1 14 -14 h 242 a 14 14 0 0 1 14 14 v 32 h -270 z" fill="#f4f6fa"/>
+<line x1="40" y1="308" x2="310" y2="308" stroke="#dfe3ea" stroke-width="1.5"/>
+<text class="title" x="60" y="292" font-size="20" font-weight="700" fill="#1b1f27">The data file</text>
+<text class="tag" x="290" y="291" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">HTTPS</text>
+<text class="body" x="60" y="340" font-size="16" fill="#5c6472">One <tspan font-family="Menlo, Consolas, monospace" font-size="15" fill="#1b1f27">.json</tspan>, <tspan font-family="Menlo, Consolas, monospace" font-size="15" fill="#1b1f27">.csv</tspan> or <tspan font-family="Menlo, Consolas, monospace" font-size="15" fill="#1b1f27">.tsv</tspan> file,</text>
+<text class="body" x="60" y="364" font-size="16" fill="#5c6472">at an address you approved</text>
+<text class="body" x="60" y="388" font-size="16" fill="#5c6472">once, on a sheet that names</text>
+<text class="body" x="60" y="412" font-size="16" fill="#5c6472">its site.</text>
+<rect x="420" y="58" width="340" height="222" rx="14" fill="#ffffff" stroke="#1f8a4c" stroke-width="2.5"/>
+<path d="M 420 72 a 14 14 0 0 1 14 -14 h 312 a 14 14 0 0 1 14 14 v 32 h -340 z" fill="#f4f6fa"/>
+<line x1="420" y1="104" x2="760" y2="104" stroke="#dfe3ea" stroke-width="1.5"/>
+<text class="title" x="440" y="88" font-size="20" font-weight="700" fill="#1b1f27">Snuggery</text>
+<text class="tag" x="740" y="87" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">OFFLINE BY DEFAULT</text>
+<text class="body" x="440" y="136" font-size="16" fill="#5c6472"><tspan font-weight="700" fill="#1b1f27">Fetches that file, and only it:</tspan></text>
+<text class="body" x="440" y="160" font-size="16" fill="#5c6472">• when you open the app</text>
+<text class="body" x="440" y="184" font-size="16" fill="#5c6472">• when you come back to it</text>
+<text class="body" x="440" y="208" font-size="16" fill="#5c6472">• from Get New Data, under ↻</text>
+<text class="body" x="440" y="232" font-size="16" fill="#5c6472">• in the background, if turned on</text>
+<text class="body" x="440" y="256" font-size="16" fill="#5c6472">• after Rebuild Data runs your job</text>
+<rect x="860" y="58" width="310" height="222" rx="14" fill="#ffffff" stroke="#1f8a4c" stroke-width="2.5"/>
+<path d="M 860 72 a 14 14 0 0 1 14 -14 h 282 a 14 14 0 0 1 14 14 v 32 h -310 z" fill="#f4f6fa"/>
+<line x1="860" y1="104" x2="1170" y2="104" stroke="#dfe3ea" stroke-width="1.5"/>
+<text class="title" x="880" y="88" font-size="20" font-weight="700" fill="#1b1f27">The mini-app</text>
+<text class="tag" x="1150" y="87" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">SANDBOXED</text>
+<text class="body" x="880" y="136" font-size="16" fill="#5c6472"><tspan font-weight="700" fill="#1b1f27">Redraws in place</tspan></text>
+<text class="body" x="880" y="160" font-size="16" fill="#5c6472">when the new data lands.</text>
+<text class="body" x="880" y="184" font-size="16" fill="#5c6472"><tspan font-weight="700" fill="#1b1f27">Fetches nothing itself.</tspan></text>
+<text class="body" x="880" y="208" font-size="16" fill="#5c6472">It reads only its own files.</text>
+<text class="section" x="40" y="466" font-size="13" font-weight="700" fill="#5c6472" letter-spacing="1.4">LIVE MAPS, SINCE 1.4</text>
+<path id="e5" d="M 310 540 L 860 540" fill="none" stroke="#8a3ea8" stroke-width="3" marker-end="url(#ah-show)"/>
+<circle class="dot" r="6" fill="#8a3ea8"><animateMotion dur="3s" repeatCount="indefinite" begin="-1.2s"><mpath href="#e5" xlink:href="#e5"/></animateMotion></circle>
+<text class="lbl" x="585" y="528" font-size="15" fill="#8a3ea8" text-anchor="middle" paint-order="stroke" stroke="#eef0f4" stroke-width="5" stroke-linejoin="round">pictures, map tiles, fonts, after Allow</text>
+<line x1="595" y1="551" x2="595" y2="586" stroke="#5c6472" stroke-width="2" stroke-dasharray="2 5" stroke-linecap="round"/>
+<circle cx="595" cy="540" r="10" fill="#ffffff" stroke="#1f8a4c" stroke-width="2.5"/>
+<path d="M 590 540 l 4 4 l 7 -8" fill="none" stroke="#1f8a4c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="40" y="484" width="270" height="174" rx="14" fill="#ffffff" stroke="#dfe3ea" stroke-width="2"/>
+<path d="M 40 498 a 14 14 0 0 1 14 -14 h 242 a 14 14 0 0 1 14 14 v 32 h -270 z" fill="#f4f6fa"/>
+<line x1="40" y1="530" x2="310" y2="530" stroke="#dfe3ea" stroke-width="1.5"/>
+<text class="title" x="60" y="514" font-size="20" font-weight="700" fill="#1b1f27">The app's sites</text>
+<text class="tag" x="290" y="513" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">UP TO 8</text>
+<text class="body" x="60" y="562" font-size="16" fill="#5c6472">A map, its terrain, a font,</text>
+<text class="body" x="60" y="586" font-size="16" fill="#5c6472">named in the app's own</text>
+<text class="body" x="60" y="610" font-size="16" fill="#5c6472"><tspan font-family="Menlo, Consolas, monospace" font-size="15" fill="#1b1f27">miniapp.json</tspan>. Each sees</text>
+<text class="body" x="60" y="634" font-size="16" fill="#5c6472">the requests sent to it.</text>
+<rect x="430" y="586" width="330" height="174" rx="14" fill="#ffffff" stroke="#1f8a4c" stroke-width="2.5"/>
+<path d="M 430 600 a 14 14 0 0 1 14 -14 h 302 a 14 14 0 0 1 14 14 v 32 h -330 z" fill="#f4f6fa"/>
+<line x1="430" y1="632" x2="760" y2="632" stroke="#dfe3ea" stroke-width="1.5"/>
+<text class="title" x="450" y="616" font-size="20" font-weight="700" fill="#1b1f27">Snuggery asks first</text>
+<text class="tag" x="740" y="615" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">PER APP</text>
+<text class="body" x="450" y="664" font-size="16" fill="#5c6472"><tspan font-weight="700" fill="#1b1f27">Show Things From the Web?</tspan></text>
+<text class="body" x="450" y="688" font-size="16" fill="#5c6472">lists every site. Nothing loads</text>
+<text class="body" x="450" y="712" font-size="16" fill="#5c6472">until you tap Allow; Make Offline</text>
+<text class="body" x="450" y="736" font-size="16" fill="#5c6472">turns the app offline again.</text>
+<rect x="860" y="484" width="310" height="174" rx="14" fill="#ffffff" stroke="#1f8a4c" stroke-width="2.5"/>
+<path d="M 860 498 a 14 14 0 0 1 14 -14 h 282 a 14 14 0 0 1 14 14 v 32 h -310 z" fill="#f4f6fa"/>
+<line x1="860" y1="530" x2="1170" y2="530" stroke="#dfe3ea" stroke-width="1.5"/>
+<text class="title" x="880" y="514" font-size="20" font-weight="700" fill="#1b1f27">An online app</text>
+<text class="tag" x="1150" y="513" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">AFTER ALLOW</text>
+<text class="body" x="880" y="562" font-size="16" fill="#5c6472"><tspan font-weight="700" fill="#1b1f27">Shows pictures, map tiles</tspan></text>
+<text class="body" x="880" y="586" font-size="16" fill="#5c6472"><tspan font-weight="700" fill="#1b1f27">and fonts from those sites.</tspan></text>
+<text class="body" x="880" y="610" font-size="16" fill="#5c6472">Its scripts and styles come</text>
+<text class="body" x="880" y="634" font-size="16" fill="#5c6472">only from its own files.</text>
+<line x1="1015" y1="658" x2="1015" y2="694" stroke="#6b7280" stroke-width="3" stroke-dasharray="6 6"/>
+<circle cx="1015" cy="676" r="10" fill="#eef0f4" stroke="#6b7280" stroke-width="2"/>
+<path d="M 1010 671 l 10 10 M 1020 671 l -10 10" stroke="#6b7280" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="860" y="694" width="310" height="126" rx="14" fill="#ffffff" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 6"/>
+<path d="M 860 708 a 14 14 0 0 1 14 -14 h 282 a 14 14 0 0 1 14 14 v 32 h -310 z" fill="#f4f6fa"/>
+<line x1="860" y1="740" x2="1170" y2="740" stroke="#dfe3ea" stroke-width="1.5"/>
+<text class="title" x="880" y="724" font-size="20" font-weight="700" fill="#1b1f27">Everything else</text>
+<text class="tag" x="1150" y="723" font-size="12" fill="#5c6472" text-anchor="end" letter-spacing="1.2">BLOCKED</text>
+<text class="body" x="880" y="772" font-size="16" fill="#5c6472">Other sites, and scripts, styles,</text>
+<text class="body" x="880" y="796" font-size="16" fill="#5c6472">frames or fetch from the web.</text>
+<line class="leg" x1="60" y1="852" x2="100" y2="852" stroke="#1f8a4c" stroke-width="3"/>
+<text class="legend" data-kind="data" x="112" y="857" font-size="16" fill="#5c6472">a data file, fetched by Snuggery</text>
+<line class="leg" x1="390" y1="852" x2="430" y2="852" stroke="#8a7420" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round"/>
+<text class="legend" data-kind="trigger" x="442" y="857" font-size="16" fill="#5c6472">trigger: starts the job</text>
+<line class="leg" x1="640" y1="852" x2="680" y2="852" stroke="#8a3ea8" stroke-width="3"/>
+<text class="legend" data-kind="show" x="692" y="857" font-size="16" fill="#5c6472">pictures, map tiles and fonts</text>
+<line class="leg" x1="940" y1="852" x2="980" y2="852" stroke="#6b7280" stroke-width="3" stroke-dasharray="6 6"/>
+<text class="legend" data-kind="blocked" x="992" y="857" font-size="16" fill="#5c6472">blocked</text>
+</svg>
