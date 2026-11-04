@@ -1,0 +1,151 @@
+/*
+  Rapportlogg's web pages — the app's own palette (its asset-catalogue colours:
+  Canvas, Surface, Ink, InkSecondary, AccentColor, Rule), light and dark.
+
+  Linked from every page with a RELATIVE path (`style.css` from the root page,
+  `../style.css` from the two subdirectories). Relative rather than absolute on
+  purpose: these pages have to work under whatever prefix a host gives them —
+  `/rapportlogg/` on a GitHub user site, a project site's own prefix, `/` on
+  a custom domain — and an absolute path breaks the moment that prefix changes.
+
+  Light and dark both defined; the app's dark mode is designed rather than
+  inverted, and the site follows it.
+*/
+:root {
+    color-scheme: light dark;
+    --canvas: #EAEEE9;
+    --surface: #FBFCFA;
+    --ink: #121712;
+    --ink-soft: #57625A;
+    --accent: #1D6B3A;
+    --hairline: #E1E5E0;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --canvas: #0E1210;
+        --surface: #1B211D;
+        --ink: #E9EDE7;
+        --ink-soft: #A3AEA2;
+        --accent: #63C782;
+        --hairline: #343B36;
+    }
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 2.5rem 1.25rem 4rem;
+    background: var(--canvas);
+    color: var(--ink);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+}
+
+main { max-width: 40rem; margin: 0 auto; }
+
+header { margin-bottom: 2.5rem; }
+
+h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+}
+
+.tagline { color: var(--ink-soft); margin: 0; }
+
+h2 {
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    margin: 2.5rem 0 0.75rem;
+}
+
+h3 {
+    font-size: 1rem;
+    margin: 1.75rem 0 0.4rem;
+}
+
+p, li { color: var(--ink); }
+p { margin: 0 0 1rem; }
+
+a { color: var(--accent); text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+.card {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.card > :first-child { margin-top: 0; }
+.card > :last-child { margin-bottom: 0; }
+
+ul { padding-left: 1.25rem; margin: 0 0 1rem; }
+li { margin-bottom: 0.35rem; }
+
+code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+    background: var(--canvas);
+    padding: 0.1em 0.35em;
+    border-radius: 5px;
+}
+
+.card code { background: var(--canvas); }
+
+footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hairline);
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+}
+
+footer a { color: var(--ink-soft); }
+
+.updated { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 2rem; }
+
+/* ── 1.1 launch pages: the clip on the front page, the examples gallery, the press kit ── */
+.store { font-weight: 600; }
+
+.clip {
+    display: block;
+    width: 100%;
+    max-width: 20rem;
+    height: auto;              /* the width/height attributes give the ratio; the box follows the width */
+    margin: 1.5rem auto;
+    border-radius: 24px;
+    background: transparent;
+    aspect-ratio: 1320 / 2868;
+    object-fit: cover;
+}
+.clip-still { display: none; }
+.film { display: block; width: 100%; height: auto; margin: 1.5rem 0; border-radius: 16px; background: #131320; aspect-ratio: 16 / 9; }
+.film-still { display: none; }
+@media (prefers-reduced-motion: reduce) {
+    .clip-motion { display: none; }
+    .clip-still { display: block; }
+    .film-motion { display: none; }
+    .film-still { display: block; }
+}
+
+.gallery { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; gap: 1rem; }
+@media (min-width: 40rem) { .gallery { grid-template-columns: 1fr 1fr; } }
+.gallery li { background: var(--surface); border-radius: 14px; padding: 1rem 1.25rem; margin: 0; }
+.gallery img { width: 100%; height: auto; border-radius: 10px; display: block; margin-bottom: 0.75rem; }
+.gallery h3 { margin: 0 0 0.3rem; font-size: 1.05rem; }
+.gallery p { margin: 0 0 0.6rem; color: var(--ink-soft); font-size: 0.95rem; }
+.gallery .links a { margin-right: 1rem; white-space: nowrap; }
+.gallery .needs { font-size: 0.85rem; color: var(--ink-soft); }
+
+.downloads { list-style: none; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); }
+.downloads li { margin: 0; text-align: center; font-size: 0.85rem; }
+.downloads img { width: 100%; height: auto; border-radius: 8px; display: block; margin-bottom: 0.3rem; }
+
+.note figure { margin: 1.5rem 0; }
+.note figure img { width: 100%; height: auto; border-radius: 12px; display: block; }
+.note figcaption { color: var(--ink-soft); font-size: 0.9rem; margin-top: 0.4rem; }
+.note .facts { font-size: 0.95rem; }
