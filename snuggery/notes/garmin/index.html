@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Garmin data, as an app on your iPhone — Snuggery: Mini-Apps</title>
+<meta name="description" content="Ask an AI for the training dashboard you want, built from your Garmin data, and keep it on your iPhone as an app of your own, offline by default. A short video with a made-up runner, the three steps, and the example to start from.">
+<link rel="stylesheet" href="../../style.css?v=20261107">
+</head>
+<body>
+<main class="note">
+
+<header>
+    <h1>Your Garmin data, as an app on your iPhone</h1>
+    <p class="tagline">Ask an AI for the dashboard you want. Keep it on your phone.</p>
+</header>
+
+<video width="1080" height="1920" class="film-vertical" controls muted playsinline preload="none" poster="../../media/film/snuggery-garmin-vertical-poster.jpg" src="../../media/film/snuggery-garmin-vertical.mp4" aria-label="The video, with a made-up runner: a training dashboard is described in Snuggery's Create tab, which writes the prompt for an AI; the AI builds it round by round, and the ZIP it sends back opens in Snuggery and runs; then the dashboard's panes: the plan week by week, training filtered to the last weeks, heart rate, stress and Body Battery, sleep, HRV and readiness, and one long run in detail"></video>
+
+<p>If you ask an AI about your Garmin data — this week against your plan, last night's sleep, how
+the long runs are trending — the answers end up in a chat. With Snuggery they can end up on your
+phone instead: a dashboard of your own that lives in Snuggery, works without a signal, and is
+hosted by nobody else.</p>
+
+<h2>Three steps</h2>
+
+<ol>
+    <li><strong>Describe it.</strong> In Snuggery's Create tab, say what you want in plain words —
+    <em>this week against my plan, training load, heart rate and my long runs</em>. Snuggery turns
+    that into a prompt.</li>
+    <li><strong>Your AI builds it, round by round.</strong> Paste the prompt into the AI you already
+    use with your Garmin data. It sends back a ZIP: the app, with your data inside. Ask for what is
+    missing or wrong, and each new ZIP replaces the last one in place.</li>
+    <li><strong>Open the ZIP in Snuggery.</strong> It runs on your iPhone, in its own sandbox, with
+    no account and no server.</li>
+</ol>
+
+<h2>Or start from the one in the video</h2>
+
+<p>The dashboard in the video is the Running Dashboard from Snuggery's open template, which an AI
+built over many rounds of asking; the runner in it is made up. You can
+<a href="https://mtomasgaard.github.io/snuggery-apps-template/running-dashboard/">open it in your browser</a>,
+or <a href="https://mtomasgaard.github.io/snuggery-apps-template/zips/running-dashboard.zip">get the ZIP</a>
+and open it in Snuggery. To fill it with your own runs, make a private copy of the
+<a href="https://github.com/mtomasgaard/snuggery-apps-template">template repository</a> (it will hold
+your heart rate, your weight and the track of every run) and give its
+<em>running-dashboard/PROMPT.md</em> to a coding agent: it walks through connecting your Garmin
+account, with you typing the password and the code yourself. The written verdicts, like the
+<em>On track</em> at the top, come from a separate daily AI session you can add later; the data job
+alone brings the numbers.</p>
+
+<h2>Fresh every morning, if you set it up</h2>
+
+<p>A dashboard shows the data it was built with. To keep it current, the template's Garmin job can
+run each morning in your private copy on GitHub, and Snuggery fetches the result when you open the
+app — a connection you set up and approve yourself. It takes some setting up: a Garmin sign-in from
+a computer (repeated now and then, when its session runs out), a secret on GitHub, and a clock to
+start the job, because the job has no schedule of its own; <em>PROMPT.md</em> walks a coding agent
+through all of it. The job signs in through an open-source library, not an official Garmin API, so
+a change on Garmin's side can stop it until the library catches up. Snuggery is offline by default
+and online only where you choose.</p>
+
+<p><a href="../the-loop/">The loop</a> tells how my own dashboard was set up, when a Shortcut still
+had to deliver the file; since 1.3, Snuggery can fetch it itself.</p>
+
+<p class="facts">Snuggery is an iPhone app for iOS 18 and later: one purchase after a free week, no
+subscription, no account, no ads, no analytics. It is not made by, affiliated with or endorsed by
+Garmin. Garmin and Body Battery are trademarks of Garmin Ltd. or its subsidiaries.</p>
+
+<p><a class="store" href="https://apps.apple.com/app/id6805883209">Snuggery on the App Store</a>
+· <a href="../../examples/">All the examples</a> · <a href="../the-loop/">The loop</a></p>
+
+<footer>Mathias Tomasgaard, November 2026. <a href="../../">Snuggery</a></footer>
+
+</main>
+</body>
+</html>

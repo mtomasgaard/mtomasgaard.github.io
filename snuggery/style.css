@@ -124,6 +124,8 @@ footer a { color: var(--ink-soft); }
 .clip-still { display: none; }
 .film { display: block; width: 100%; height: auto; margin: 1.5rem 0; border-radius: 16px; background: #131320; aspect-ratio: 16 / 9; }
 .film-still { display: none; }
+/* a vertical film (1080×1920) on a note page: the Garmin creator promo, November 2026 */
+.film-vertical { display: block; width: 100%; max-width: 22rem; height: auto; margin: 1.5rem auto; border-radius: 16px; background: #131320; aspect-ratio: 9 / 16; }
 @media (prefers-reduced-motion: reduce) {
     .clip-motion { display: none; }
     .clip-still { display: block; }
